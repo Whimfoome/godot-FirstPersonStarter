@@ -4,4 +4,8 @@ FPS template for Godot 3.1 to give starter content for a new or already existing
 #### Includes:
 - Example 3D Scene
 - 3D Character Controller
--- Sprinting
+  - Perfect Camera Rotation
+  - Smooth Walking (Acceleration and Deacceleration)
+  - Sprinting
+  - Ladder Climbing
+  - Highly Customizable
