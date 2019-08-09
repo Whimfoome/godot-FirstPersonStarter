@@ -9,7 +9,7 @@ FPS template for Godot 3.1 to give starter content for a new or already existing
   - Sprinting
   - Ladder Climbing
   - Slope Rays
-  - Easily Adjustable
+  - Easily Adjustable from the Inspector
 
 #### Additional:
 - Thanks to the awesome Godot community for being helpful to anyone with problems, for making amazing tutorials, for writing the documentation and being supportive.
