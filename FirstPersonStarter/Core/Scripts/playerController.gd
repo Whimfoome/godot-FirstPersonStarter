@@ -1,6 +1,10 @@
 extends KinematicBody
 
-##################################################
+"""
+Original code from Jeremy Bullock: https://www.youtube.com/watch?v=Etpq-d5af6M&list=PLTZoMpB5Z4aD-rCpluXsQjkGYgUGUZNIV
+He explains the code very well, so if you have any questions, just head up to his channel.
+Modified by me in some areas to fix bugs like Camera Rotation jitter at clamp or direction when looking straight down.
+"""
 
 #camera vars
 export (float) var mouseSensitivity = 10
@@ -152,13 +156,3 @@ func CameraRotation(delta):
 		var temp_rot = Head.rotation_degrees
 		temp_rot.x = clamp(temp_rot.x, -90, 90)
 		Head.rotation_degrees = temp_rot
-
-
-func _on_Ladder_body_entered(body):
-	if body.is_in_group("Player"):
-		flying = true
-
-
-func _on_Ladder_body_exited(body):
-	if body.is_in_group("Player"):
-		flying = false

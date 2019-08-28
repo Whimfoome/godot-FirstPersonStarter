@@ -9,6 +9,8 @@ height = 1.5
 [node name="Player" type="KinematicBody" groups=[
 "Player",
 ]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource( 1 )
 HeadPath = NodePath("Head")
 slopeRayPath = NodePath("SlopeRay")

@@ -31,7 +31,6 @@ script = ExtResource( 1 )
 editor/display_folded = true
 
 [node name="Floor" type="MeshInstance" parent="ArenaGeometry"]
-editor/display_folded = true
 transform = Transform( 40, 0, 0, 0, -1.74846e-006, -1, 0, 40, -4.37114e-008, 0, 0, 0 )
 use_in_baked_light = true
 mesh = SubResource( 2 )

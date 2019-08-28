@@ -1119,6 +1119,11 @@ mouse_input={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Objects"
+3d_physics/layer_2="Player"
+
 [rendering]
 
 quality/shadows/filter_mode=2
