@@ -3,7 +3,7 @@ extends KinematicBody
 """
 Original code from Jeremy Bullock: https://www.youtube.com/watch?v=Etpq-d5af6M&list=PLTZoMpB5Z4aD-rCpluXsQjkGYgUGUZNIV
 He explains the code very well, so if you have any questions, just head up to his channel.
-Modified by me in some areas to fix bugs like Camera Rotation jitter at clamp or direction when looking straight down.
+Modified by me.
 """
 
 #camera vars
@@ -76,16 +76,16 @@ func Walk(delta):
 	if (is_on_floor()):
 		hasContact = true
 		var rayCast = slopeRay.get_collision_normal()
-		var floorAngle = rad2deg(acos(rayCast.dot(Vector3(0,1,0))))
+		var floorAngle = rad2deg(acos(rayCast.dot(Vector3(0, 1, 0))))
 		if floorAngle > slopeAngle:
 			velocity.y += -gravity * delta
-	
-	elif !(slopeRay.is_colliding()):
-		hasContact = false
-	velocity.y += -gravity * delta
+	else:
+		if !(slopeRay.is_colliding()):
+			hasContact = false
+		velocity.y += -gravity * delta
 	
 	if (hasContact and !is_on_floor()):
-		move_and_collide(Vector3(0,-1,0)) 
+		move_and_collide(Vector3(0, -1, 0)) 
 	
 	var tempVelocity = velocity
 	tempVelocity.y = 0
@@ -114,7 +114,7 @@ func Walk(delta):
 		hasContact = false
 	
 	#move
-	velocity = move_and_slide(velocity, Vector3(0,1,0))
+	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
 
 
 func Fly(delta):

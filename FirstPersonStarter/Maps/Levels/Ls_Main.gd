@@ -1,7 +1,7 @@
 extends Spatial
 
-##################################################
-#-----------------LEVEL--SCRIPT------------------#
+################################################## Close your game faster by clicking 'Esc'
+#-----------------LEVEL--SCRIPT------------------# Change mouse mode by clicking 'Shift + F1'
 ##################################################
 
 export (bool) var fastClose = true
