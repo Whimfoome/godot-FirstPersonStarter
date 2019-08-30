@@ -153,5 +153,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
 [node name="Ladder" parent="." instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-008, 0, 7, 0, 1.51, 0, -1, 0, -3.0598e-007, 13.25, 2, -5.25 )
-[connection signal="body_entered" from="Ladder" to="Player" method="_on_Ladder_body_entered"]
-[connection signal="body_exited" from="Ladder" to="Player" method="_on_Ladder_body_exited"]

@@ -85,7 +85,8 @@ func Walk(delta):
 		velocity.y += -gravity * delta
 	
 	if (hasContact and !is_on_floor()):
-		move_and_collide(Vector3(0, -1, 0)) 
+		var pullDown = Vector3(0, -1, 0)
+		pullDown = move_and_collide(pullDown)
 	
 	var tempVelocity = velocity
 	tempVelocity.y = 0
@@ -96,7 +97,7 @@ func Walk(delta):
 	else:
 		speed = walkSpeed
 	
-	#Where would the plager go at max speed
+	#Where would the player go at max speed
 	var target = direction * speed
 	var tempAcceleration
 	if direction.dot(tempVelocity) > 0:
@@ -137,7 +138,7 @@ func Fly(delta):
 	#Calculates a portion of distance to go
 	velocity = velocity.linear_interpolate(target, flyAcceleration * delta)
 	#move
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 
 
 func CameraRotation(delta):
