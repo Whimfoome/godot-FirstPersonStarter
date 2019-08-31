@@ -45,7 +45,7 @@ shape = SubResource( 3 )
 
 [node name="Slope1" type="MeshInstance" parent="ArenaGeometry"]
 editor/display_folded = true
-transform = Transform( 12, 0, 0, 0, 3.74017, -0.226577, 0, 8.02082, 0.105655, -13.502, 1.517, 0.041 )
+transform = Transform( 12, 0, 0, 0, 3.74017, -0.226578, 0, 8.02082, 0.105655, -13.502, 1.517, 0.041 )
 use_in_baked_light = true
 mesh = SubResource( 4 )
 material/0 = null

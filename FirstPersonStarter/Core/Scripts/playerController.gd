@@ -31,8 +31,6 @@ export var flySpeed = 10
 export var flyAcceleration = 4
 var flying = false
 #slope vars
-export var slopeAngle = 35
-#
 export (NodePath) var slopeRayPath
 onready var slopeRay = get_node(slopeRayPath)
 
@@ -75,18 +73,15 @@ func Walk(delta):
 	
 	if (is_on_floor()):
 		hasContact = true
-		var rayCast = slopeRay.get_collision_normal()
-		var floorAngle = rad2deg(acos(rayCast.dot(Vector3(0, 1, 0))))
-		if floorAngle > slopeAngle:
-			velocity.y += -gravity * delta
 	else:
 		if !(slopeRay.is_colliding()):
 			hasContact = false
-		velocity.y += -gravity * delta
 	
 	if (hasContact and !is_on_floor()):
 		var pullDown = Vector3(0, -1, 0)
 		pullDown = move_and_collide(pullDown)
+	
+	velocity.y += -gravity * delta
 	
 	var tempVelocity = velocity
 	tempVelocity.y = 0
@@ -115,7 +110,7 @@ func Walk(delta):
 		hasContact = false
 	
 	#move
-	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
+	velocity = move_and_slide(velocity, Vector3(0, 1, 0), true)
 
 
 func Fly(delta):
