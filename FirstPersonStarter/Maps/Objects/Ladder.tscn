@@ -9,7 +9,7 @@ extents = Vector3( 0.25, 1, 0.74966 )
 size = Vector3( 0.5, 2, 1.5 )
 
 [sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.819608, 0.819608, 0.819608, 1 )
+albedo_color = Color( 0.380392, 0.4, 0.447059, 1 )
 
 [node name="Ladder" type="Area"]
 collision_layer = 0

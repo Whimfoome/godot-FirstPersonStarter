@@ -8,18 +8,21 @@ Modified by me.
 
 #camera vars
 export (float) var mouseSensitivity = 10
-#
 export (NodePath) var HeadPath
 onready var Head = get_node(HeadPath)
-#
+export (NodePath) var CamPath
+onready var Cam = get_node(CamPath)
+export (float) var FOV = 90
 var Axis = Vector2()
 #moving vars
 var velocity = Vector3()
 var direction = Vector3()
+var mvarray = [false, false, false, false] # FW, BW, L, R
+var canSprint = true
+var sprinting = false
 #walk vars
 export var gravity = 30
 export var walkSpeed = 10
-var canSprint = true
 export var sprintSpeed = 16
 export var acceleration = 4
 export var deacceleration = 6
@@ -38,6 +41,7 @@ onready var slopeRay = get_node(slopeRayPath)
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Cam.fov = FOV
 
 
 func _physics_process(delta):
@@ -55,6 +59,7 @@ func _input(event):
 
 
 func Walk(delta):
+	mvarray = [false, false, false, false]
 	#Resets the direction of the player
 	direction = Vector3()
 	#Gets the rotation of the direction
@@ -62,20 +67,23 @@ func Walk(delta):
 	#Checks Input and changes direction
 	if Input.is_action_pressed("moveForward"):
 		direction -= aim.z
+		mvarray[0] = true
 	if Input.is_action_pressed("moveBackward"):
 		direction += aim.z
+		mvarray[1] = true
 	if Input.is_action_pressed("moveLeft"):
 		direction -= aim.x
+		mvarray[2] = true
 	if Input.is_action_pressed("moveRight"):
 		direction += aim.x
+		mvarray[3] = true
 	direction.y = 0
 	direction = direction.normalized()
 	
 	if (is_on_floor()):
 		hasContact = true
-	else:
-		if !(slopeRay.is_colliding()):
-			hasContact = false
+	elif !(slopeRay.is_colliding()):
+		hasContact = false
 	
 	if (hasContact and !is_on_floor()):
 		var pullDown = Vector3(0, -1, 0)
@@ -87,10 +95,14 @@ func Walk(delta):
 	tempVelocity.y = 0
 	
 	var speed
-	if Input.is_action_pressed("moveSprint") and canSprint:
+	if Input.is_action_pressed("moveSprint") && canSprint && mvarray[0] == true && mvarray[1] != true:
 		speed = sprintSpeed
+		Cam.set_fov(lerp(Cam.fov, FOV * 1.05, delta * 8))
+		sprinting = true
 	else:
 		speed = walkSpeed
+		Cam.set_fov(lerp(Cam.fov, FOV, delta * 8))
+		sprinting = false
 	
 	#Where would the player go at max speed
 	var target = direction * speed

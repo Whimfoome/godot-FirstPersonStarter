@@ -13,6 +13,7 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource( 1 )
 HeadPath = NodePath("Head")
+CamPath = NodePath("Head/Camera")
 slopeRayPath = NodePath("SlopeRay")
 
 [node name="Collision" type="CollisionShape" parent="."]
@@ -20,7 +21,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0,
 shape = SubResource( 1 )
 
 [node name="Head" type="Spatial" parent="."]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]

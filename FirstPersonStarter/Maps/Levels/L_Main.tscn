@@ -1,28 +1,33 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://FirstPersonStarter/Maps/Levels/Ls_Main.gd" type="Script" id=1]
 [ext_resource path="res://FirstPersonStarter/Materials/M_Cube.material" type="Material" id=2]
-[ext_resource path="res://FirstPersonStarter/Maps/Environments/WorldEnv.res" type="Environment" id=3]
-[ext_resource path="res://FirstPersonStarter/Core/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://FirstPersonStarter/Maps/Objects/Ladder.tscn" type="PackedScene" id=5]
+[ext_resource path="res://FirstPersonStarter/Materials/M_Cube2.material" type="Material" id=3]
+[ext_resource path="res://FirstPersonStarter/Maps/Environments/WorldEnv.res" type="Environment" id=4]
+[ext_resource path="res://FirstPersonStarter/Core/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://FirstPersonStarter/Maps/Objects/Ladder.tscn" type="PackedScene" id=6]
 
-[sub_resource type="SpatialMaterial" id=1]
-vertex_color_is_srgb = true
-albedo_color = Color( 0.156863, 0.25098, 0.333333, 1 )
-
-[sub_resource type="CubeMesh" id=2]
-material = SubResource( 1 )
+[sub_resource type="CubeMesh" id=1]
 size = Vector3( 1, 1, 1 )
 
-[sub_resource type="ConvexPolygonShape" id=3]
+[sub_resource type="ConvexPolygonShape" id=2]
 points = PoolVector3Array( -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5 )
 
-[sub_resource type="CubeMesh" id=4]
-material = ExtResource( 2 )
+[sub_resource type="CubeMesh" id=3]
 size = Vector3( 1, 1, 1 )
 
-[sub_resource type="ConvexPolygonShape" id=5]
+[sub_resource type="ConvexPolygonShape" id=4]
 points = PoolVector3Array( -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5 )
+
+[sub_resource type="GIProbeData" id=5]
+bounds = AABB( -30, -10, -30, 60, 20, 60 )
+cell_size = 0.46875
+to_cell_xform = Transform( 2.13333, 0, 0, 0, 2.13333, 0, 0, 0, 2.13333, 64, 21.3333, 64 )
+dynamic_data = PoolIntArray( 0, 8, 128, 64, 128, 1, 0, 0, 0, 0, 308572640, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+bias = 1.5
+normal_bias = 0.0
+propagation = 0.7
 
 [node name="L_Main" type="Spatial"]
 script = ExtResource( 1 )
@@ -34,111 +39,111 @@ editor/display_folded = true
 editor/display_folded = true
 transform = Transform( 40, 0, 0, 0, -1.74846e-006, -1, 0, 40, -4.37114e-008, 0, 0, 0 )
 use_in_baked_light = true
-mesh = SubResource( 2 )
-material/0 = null
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Floor"]
 editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Floor/StaticBody"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Slope1" type="MeshInstance" parent="ArenaGeometry"]
 editor/display_folded = true
 transform = Transform( 12, 0, 0, 0, 3.74017, -0.226578, 0, 8.02082, 0.105655, -13.502, 1.517, 0.041 )
 use_in_baked_light = true
-mesh = SubResource( 4 )
-material/0 = null
+mesh = SubResource( 3 )
+material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Slope1"]
 editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Slope1/StaticBody"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="BigCube1" type="MeshInstance" parent="ArenaGeometry"]
 editor/display_folded = true
 transform = Transform( -1.74846e-007, 12, -1.31134e-007, 0, -5.24537e-007, -3, -4, -5.24537e-007, 5.73206e-015, -13.5, 2, 6 )
 use_in_baked_light = true
-mesh = SubResource( 4 )
-material/0 = null
+mesh = SubResource( 3 )
+material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/BigCube1"]
 editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/BigCube1/StaticBody"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="BigCube2" type="MeshInstance" parent="ArenaGeometry"]
 editor/display_folded = true
 transform = Transform( -1.74846e-007, 12, -1.31134e-007, 0, -5.24537e-007, -3, -4, -5.24537e-007, 5.73206e-015, 13.5, 2, -7.44552 )
 use_in_baked_light = true
-mesh = SubResource( 4 )
-material/0 = null
+mesh = SubResource( 3 )
+material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/BigCube2"]
 editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/BigCube2/StaticBody"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Wall1" type="MeshInstance" parent="ArenaGeometry"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, -1.74846e-006, -6, 0, 40, -2.62268e-007, -19.5, 3.5, 0 )
 use_in_baked_light = true
-mesh = SubResource( 4 )
-material/0 = null
+mesh = SubResource( 3 )
+material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall1"]
 editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall1/StaticBody"]
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="Wall2" type="MeshInstance" parent="ArenaGeometry"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, -1.74846e-006, -6, 0, 40, -2.62268e-007, 19.5, 3.5, 0 )
 use_in_baked_light = true
-mesh = SubResource( 4 )
-material/0 = null
+mesh = SubResource( 3 )
+material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall2"]
 editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall2/StaticBody"]
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="Wall3" type="MeshInstance" parent="ArenaGeometry"]
 editor/display_folded = true
 transform = Transform( -4.37114e-008, 40, -2.62268e-007, 0, -1.74846e-006, -6, -1, -1.74846e-006, 1.14641e-014, 0, 3.5, 19.5 )
 use_in_baked_light = true
-mesh = SubResource( 4 )
-material/0 = null
+mesh = SubResource( 3 )
+material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall3"]
 editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall3/StaticBody"]
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="Wall4" type="MeshInstance" parent="ArenaGeometry"]
 editor/display_folded = true
 transform = Transform( -4.37114e-008, 40, -2.62268e-007, 0, -1.74846e-006, -6, -1, -1.74846e-006, 1.14641e-014, 0, 3.5, -19.5 )
 use_in_baked_light = true
-mesh = SubResource( 4 )
-material/0 = null
+mesh = SubResource( 3 )
+material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall4"]
 editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall4/StaticBody"]
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="Lighting" type="Spatial" parent="."]
 editor/display_folded = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Lighting"]
-transform = Transform( 0.977096, 0.191139, -0.0935388, 0, 0.439564, 0.898211, 0.212799, -0.877639, 0.429496, 0, 7.79458, 0 )
+transform = Transform( 0.977096, 0.191138, -0.0935387, 0, 0.439564, 0.898211, 0.212799, -0.877639, 0.429496, 0, 7.79458, 0 )
 light_bake_mode = 2
 shadow_enabled = true
 shadow_bias = 0.05
@@ -146,10 +151,15 @@ directional_shadow_normal_bias = 0.1
 directional_shadow_max_distance = 100.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
-environment = ExtResource( 3 )
+environment = ExtResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="GIProbe" type="GIProbe" parent="Lighting"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.0848, 0 )
+extents = Vector3( 30, 10, 30 )
+data = SubResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
-[node name="Ladder" parent="." instance=ExtResource( 5 )]
+[node name="Ladder" parent="." instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-008, 0, 7, 0, 1.51, 0, -1, 0, -3.0598e-007, 13.25, 2, -5.25 )

@@ -1126,10 +1126,6 @@ mouse_input={
 
 [rendering]
 
-quality/shadows/filter_mode=2
-quality/shadows/filter_mode.mobile=1
-quality/shading/force_vertex_shading=true
-quality/shading/force_lambert_over_burley=true
-quality/shading/force_blinn_over_ggx=true
 quality/subsurface_scattering/quality=2
+quality/filters/msaa=3
 environment/default_environment="res://FirstPersonStarter/Maps/Environments/EntityEnv.tres"
