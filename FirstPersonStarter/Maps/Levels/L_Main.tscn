@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://FirstPersonStarter/Maps/Levels/Ls_Main.gd" type="Script" id=1]
 [ext_resource path="res://FirstPersonStarter/Materials/M_Cube.material" type="Material" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://FirstPersonStarter/Maps/Environments/WorldEnv.res" type="Environment" id=4]
 [ext_resource path="res://FirstPersonStarter/Core/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://FirstPersonStarter/Maps/Objects/Ladder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://FirstPersonStarter/Maps/Levels/FPS_Counter.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 1, 1, 1 )
@@ -163,3 +164,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
 [node name="Ladder" parent="." instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-008, 0, 7, 0, 1.51, 0, -1, 0, -3.0598e-007, 13.25, 2, -5.25 )
+
+[node name="FPS_Counter" parent="." instance=ExtResource( 7 )]
