@@ -3,7 +3,8 @@ FPS template for Godot 3.1 to give starter content for a new or already existing
 
 #### Includes:
 - Example 3D Scene
-  - +Environment
+  - Environment
+  - FPS Counter
 - 3D Character Controller
   - Perfect Camera Rotation
   - Smooth Walking (Acceleration and Deacceleration)
