@@ -6,42 +6,41 @@ He explains the code very well, so if you have any questions, just head up to hi
 Modified by me.
 """
 
-#camera vars
-export (float) var mouseSensitivity = 10
-export (NodePath) var HeadPath
-onready var Head = get_node(HeadPath)
-export (NodePath) var CamPath
-onready var Cam = get_node(CamPath)
+# Camera
+export (float) var mouse_sensitivity = 10
+export (NodePath) var head_path
+onready var head = get_node(head_path)
+export (NodePath) var cam_path
+onready var cam = get_node(cam_path)
 export (float) var FOV = 90
-var Axis = Vector2()
-#moving vars
+var axis = Vector2()
+# Move
 var velocity = Vector3()
 var direction = Vector3()
 var mvarray = [false, false, false, false] # FW, BW, L, R
-var canSprint = true
+var can_sprint = true
 var sprinting = false
-#walk vars
+# Walk
 export var gravity = 30
-export var walkSpeed = 10
-export var sprintSpeed = 16
+export var walk_speed = 10
+export var sprint_speed = 16
 export var acceleration = 4
 export var deacceleration = 6
-#jump vars
-export var jumpHeight = 10
-var hasContact = false
-#fly vars
-export var flySpeed = 10
-export var flyAcceleration = 4
+export var jump_height = 10
+var grounded = false
+# Fly
+export var fly_speed = 10
+export var fly_accel = 4
 var flying = false
-#slope vars
-export (NodePath) var slopeRayPath
-onready var slopeRay = get_node(slopeRayPath)
+# Slope
+export (NodePath) var slope_ray_path
+onready var slope_ray = get_node(slope_ray_path)
 
 ##################################################
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	Cam.fov = FOV
+	cam.fov = FOV
 
 
 func _physics_process(delta):
@@ -55,16 +54,14 @@ func _physics_process(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		Axis = event.relative
+		axis = event.relative
 
 
 func Walk(delta):
+	# Input
 	mvarray = [false, false, false, false]
-	#Resets the direction of the player
 	direction = Vector3()
-	#Gets the rotation of the direction
 	var aim = get_global_transform().basis
-	#Checks Input and changes direction
 	if Input.is_action_pressed("moveForward"):
 		direction -= aim.z
 		mvarray[0] = true
@@ -80,57 +77,55 @@ func Walk(delta):
 	direction.y = 0
 	direction = direction.normalized()
 	
-	if (is_on_floor()):
-		hasContact = true
-	elif !(slopeRay.is_colliding()):
-		hasContact = false
+	# Grounded or Not and Slope Ray
+	if is_on_floor():
+		grounded = true
+	elif !slope_ray.is_colliding():
+		grounded = false
+	if grounded and !is_on_floor():
+		var pull_down = Vector3(0, -0.1, 0)
+		pull_down = move_and_collide(pull_down)
 	
-	if (hasContact and !is_on_floor()):
-		var pullDown = Vector3(0, -1, 0)
-		pullDown = move_and_collide(pullDown)
+	# Jump
+	if grounded and Input.is_action_just_pressed("moveJump"):
+		velocity.y = jump_height
+		grounded = false
 	
+	# Apply Gravity
 	velocity.y += -gravity * delta
 	
-	var tempVelocity = velocity
-	tempVelocity.y = 0
-	
+	# Sprint
 	var speed
-	if Input.is_action_pressed("moveSprint") && canSprint && mvarray[0] == true && mvarray[1] != true:
-		speed = sprintSpeed
-		Cam.set_fov(lerp(Cam.fov, FOV * 1.05, delta * 8))
+	if Input.is_action_pressed("moveSprint") && can_sprint && mvarray[0] == true && mvarray[1] != true:
+		speed = sprint_speed
+		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
 		sprinting = true
 	else:
-		speed = walkSpeed
-		Cam.set_fov(lerp(Cam.fov, FOV, delta * 8))
+		speed = walk_speed
+		cam.set_fov(lerp(cam.fov, FOV, delta * 8))
 		sprinting = false
 	
-	#Where would the player go at max speed
+	# Acceleration and Deacceleration
+	var temp_vel = velocity
+	temp_vel.y = 0
 	var target = direction * speed
-	var tempAcceleration
-	if direction.dot(tempVelocity) > 0:
-		tempAcceleration = acceleration 
+	var tem_accel
+	if direction.dot(temp_vel) > 0:
+		tem_accel = acceleration 
 	else:
-		tempAcceleration = deacceleration
+		tem_accel = deacceleration
+	temp_vel = temp_vel.linear_interpolate(target, tem_accel * delta)
+	velocity.x = temp_vel.x
+	velocity.z = temp_vel.z
 	
-	#Calculates a portion of distance to go
-	tempVelocity = tempVelocity.linear_interpolate(target, tempAcceleration * delta)
-	velocity.x = tempVelocity.x
-	velocity.z = tempVelocity.z
-	
-	if hasContact and Input.is_action_just_pressed("moveJump"):
-		velocity.y = jumpHeight
-		hasContact = false
-	
-	#move
+	# Move
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0), true)
 
 
 func Fly(delta):
-	#Resets the direction of the player
+	# Input
 	direction = Vector3()
-	#Gets the rotation of the head
-	var aim = Head.get_global_transform().basis
-	#Checks Input and changes direction
+	var aim = head.get_global_transform().basis
 	if Input.is_action_pressed("moveForward"):
 		direction -= aim.z
 	if Input.is_action_pressed("moveBackward"):
@@ -140,27 +135,28 @@ func Fly(delta):
 	if Input.is_action_pressed("moveRight"):
 		direction += aim.x
 	direction = direction.normalized()
-	#Where would the player go at max speed
-	var target = direction * flySpeed
-	#Calculates a portion of distance to go
-	velocity = velocity.linear_interpolate(target, flyAcceleration * delta)
-	#move
+	
+	# Acceleration and Deacceleration
+	var target = direction * fly_speed
+	velocity = velocity.linear_interpolate(target, fly_accel * delta)
+	
+	# Move
 	velocity = move_and_slide(velocity)
 
 
 func CameraRotation(delta):
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
-	if Axis.length() > 0:
-		var mouseX = -Axis.x * mouseSensitivity * delta
-		var mouseY = -Axis.y * mouseSensitivity * delta
+	if axis.length() > 0:
+		var mouse_x = -axis.x * mouse_sensitivity * delta
+		var mouse_y = -axis.y * mouse_sensitivity * delta
 		
-		Axis = Vector2()
+		axis = Vector2()
 		
-		rotate_y(deg2rad(mouseX))
+		rotate_y(deg2rad(mouse_x))
 		
-		Head.rotate_x(deg2rad(mouseY))
+		head.rotate_x(deg2rad(mouse_y))
 		
-		var temp_rot = Head.rotation_degrees
+		var temp_rot = head.rotation_degrees
 		temp_rot.x = clamp(temp_rot.x, -90, 90)
-		Head.rotation_degrees = temp_rot
+		head.rotation_degrees = temp_rot

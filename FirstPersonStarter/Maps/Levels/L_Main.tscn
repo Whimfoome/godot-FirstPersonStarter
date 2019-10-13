@@ -34,114 +34,96 @@ propagation = 0.7
 script = ExtResource( 1 )
 
 [node name="ArenaGeometry" type="Spatial" parent="."]
-editor/display_folded = true
 
 [node name="Floor" type="MeshInstance" parent="ArenaGeometry"]
-editor/display_folded = true
 transform = Transform( 40, 0, 0, 0, -1.74846e-006, -1, 0, 40, -4.37114e-008, 0, 0, 0 )
 use_in_baked_light = true
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Floor"]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Floor/StaticBody"]
 shape = SubResource( 2 )
 
 [node name="Slope1" type="MeshInstance" parent="ArenaGeometry"]
-editor/display_folded = true
-transform = Transform( 12, 0, 0, 0, 3.74017, -0.226578, 0, 8.02082, 0.105655, -13.502, 1.517, 0.041 )
+transform = Transform( 12, 0, 0, 0, 3.74016, -0.226577, 0, 8.02083, 0.105654, -13.502, 1.517, 0.041 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Slope1"]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Slope1/StaticBody"]
 shape = SubResource( 2 )
 
 [node name="BigCube1" type="MeshInstance" parent="ArenaGeometry"]
-editor/display_folded = true
 transform = Transform( -1.74846e-007, 12, -1.31134e-007, 0, -5.24537e-007, -3, -4, -5.24537e-007, 5.73206e-015, -13.5, 2, 6 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/BigCube1"]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/BigCube1/StaticBody"]
 shape = SubResource( 2 )
 
 [node name="BigCube2" type="MeshInstance" parent="ArenaGeometry"]
-editor/display_folded = true
 transform = Transform( -1.74846e-007, 12, -1.31134e-007, 0, -5.24537e-007, -3, -4, -5.24537e-007, 5.73206e-015, 13.5, 2, -7.44552 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/BigCube2"]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/BigCube2/StaticBody"]
 shape = SubResource( 2 )
 
 [node name="Wall1" type="MeshInstance" parent="ArenaGeometry"]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, -1.74846e-006, -6, 0, 40, -2.62268e-007, -19.5, 3.5, 0 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall1"]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall1/StaticBody"]
 shape = SubResource( 4 )
 
 [node name="Wall2" type="MeshInstance" parent="ArenaGeometry"]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, -1.74846e-006, -6, 0, 40, -2.62268e-007, 19.5, 3.5, 0 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall2"]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall2/StaticBody"]
 shape = SubResource( 4 )
 
 [node name="Wall3" type="MeshInstance" parent="ArenaGeometry"]
-editor/display_folded = true
 transform = Transform( -4.37114e-008, 40, -2.62268e-007, 0, -1.74846e-006, -6, -1, -1.74846e-006, 1.14641e-014, 0, 3.5, 19.5 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall3"]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall3/StaticBody"]
 shape = SubResource( 4 )
 
 [node name="Wall4" type="MeshInstance" parent="ArenaGeometry"]
-editor/display_folded = true
 transform = Transform( -4.37114e-008, 40, -2.62268e-007, 0, -1.74846e-006, -6, -1, -1.74846e-006, 1.14641e-014, 0, 3.5, -19.5 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall4"]
-editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall4/StaticBody"]
 shape = SubResource( 4 )
 
 [node name="Lighting" type="Spatial" parent="."]
-editor/display_folded = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Lighting"]
 transform = Transform( 0.977096, 0.191138, -0.0935387, 0, 0.439564, 0.898211, 0.212799, -0.877639, 0.429496, 0, 7.79458, 0 )
@@ -149,7 +131,6 @@ light_bake_mode = 2
 shadow_enabled = true
 shadow_bias = 0.05
 directional_shadow_normal_bias = 0.1
-directional_shadow_max_distance = 100.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
 environment = ExtResource( 4 )

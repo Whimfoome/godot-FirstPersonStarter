@@ -4,7 +4,7 @@ extends Label
 export (bool) var enabled = true
 
 
-func _process(delta):
+func _process(_delta):
 	if enabled:
 		var frames = Engine.get_frames_per_second()
 		text = "FPS: "

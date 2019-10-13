@@ -12,9 +12,9 @@ height = 1.5
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 1 )
-HeadPath = NodePath("Head")
-CamPath = NodePath("Head/Camera")
-slopeRayPath = NodePath("SlopeRay")
+head_path = NodePath("Head")
+cam_path = NodePath("Head/Camera")
+slope_ray_path = NodePath("SlopeRay")
 
 [node name="Collision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
