@@ -44,12 +44,12 @@ func _ready():
 
 
 func _physics_process(delta):
-	CameraRotation(delta)
+	camera_rotation(delta)
 	
 	if flying:
-		Fly(delta)
+		fly(delta)
 	else:
-		Walk(delta)
+		walk(delta)
 
 
 func _input(event):
@@ -57,7 +57,7 @@ func _input(event):
 		axis = event.relative
 
 
-func Walk(delta):
+func walk(delta):
 	# Input
 	mvarray = [false, false, false, false]
 	direction = Vector3()
@@ -122,7 +122,7 @@ func Walk(delta):
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0), true)
 
 
-func Fly(delta):
+func fly(delta):
 	# Input
 	direction = Vector3()
 	var aim = head.get_global_transform().basis
@@ -144,7 +144,7 @@ func Fly(delta):
 	velocity = move_and_slide(velocity)
 
 
-func CameraRotation(delta):
+func camera_rotation(delta):
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
 	if axis.length() > 0:
