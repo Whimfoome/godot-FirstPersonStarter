@@ -8,9 +8,9 @@ Ladder Area has Physics Collision Mask set to: Player (Layer 2), which means tha
 Learn more on this GDQuest's video: https://www.youtube.com/watch?v=UZu8NwlkXcU
 """
 
-func _on_body_entered(body: PhysicsBody):
+func _on_body_entered(body: PhysicsBody) -> void:
 	body.flying = true
 
 
-func _on_body_exited(body: PhysicsBody):
+func _on_body_exited(body: PhysicsBody) -> void:
 	body.flying = false

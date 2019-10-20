@@ -4,9 +4,9 @@ extends Label
 export (bool) var enabled = true
 
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	if enabled:
-		var frames = Engine.get_frames_per_second()
+		var frames: float = Engine.get_frames_per_second()
 		text = "FPS: "
 		text += str(frames)
 		

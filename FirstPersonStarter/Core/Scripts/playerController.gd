@@ -9,41 +9,41 @@ Modified by me.
 # Camera
 export (float) var mouse_sensitivity = 10
 export (NodePath) var head_path
-onready var head = get_node(head_path)
+onready var head: Spatial = get_node(head_path)
 export (NodePath) var cam_path
-onready var cam = get_node(cam_path)
+onready var cam: Camera = get_node(cam_path)
 export (float) var FOV = 90
-var axis = Vector2()
+var axis: Vector2 = Vector2()
 # Move
-var velocity = Vector3()
-var direction = Vector3()
-var mvarray = [false, false, false, false] # FW, BW, L, R
-var can_sprint = true
-var sprinting = false
+var velocity: Vector3 = Vector3()
+var direction: Vector3 = Vector3()
+var mvarray: Array = [false, false, false, false] # FW, BW, L, R
+var can_sprint: bool = true
+var sprinting: bool = false
 # Walk
-export var gravity = 30
-export var walk_speed = 10
-export var sprint_speed = 16
-export var acceleration = 4
-export var deacceleration = 6
-export var jump_height = 10
-var grounded = false
+export (float) var gravity = 30.0
+export (int) var walk_speed = 10
+export (int) var sprint_speed = 16
+export (int) var acceleration = 6
+export (int) var deacceleration = 8
+export (int) var jump_height = 10
+var grounded: bool = false
 # Fly
-export var fly_speed = 10
-export var fly_accel = 4
-var flying = false
+export (int) var fly_speed = 10
+export (int) var fly_accel = 4
+var flying: bool = false
 # Slope
 export (NodePath) var slope_ray_path
-onready var slope_ray = get_node(slope_ray_path)
+onready var slope_ray: RayCast = get_node(slope_ray_path)
 
 ##################################################
 
-func _ready():
+func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cam.fov = FOV
 
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	camera_rotation(delta)
 	
 	if flying:
@@ -52,16 +52,16 @@ func _physics_process(delta):
 		walk(delta)
 
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		axis = event.relative
 
 
-func walk(delta):
+func walk(delta: float) -> void:
 	# Input
 	mvarray = [false, false, false, false]
 	direction = Vector3()
-	var aim = get_global_transform().basis
+	var aim: Basis = get_global_transform().basis
 	if Input.is_action_pressed("moveForward"):
 		direction -= aim.z
 		mvarray[0] = true
@@ -83,8 +83,7 @@ func walk(delta):
 	elif !slope_ray.is_colliding():
 		grounded = false
 	if grounded and !is_on_floor():
-		var pull_down = Vector3(0, -0.1, 0)
-		pull_down = move_and_collide(pull_down)
+		var _collision: KinematicCollision  = move_and_collide(Vector3(0, -0.1, 0))
 	
 	# Jump
 	if grounded and Input.is_action_just_pressed("moveJump"):
@@ -95,7 +94,7 @@ func walk(delta):
 	velocity.y += -gravity * delta
 	
 	# Sprint
-	var speed
+	var speed: int
 	if Input.is_action_pressed("moveSprint") && can_sprint && mvarray[0] == true && mvarray[1] != true:
 		speed = sprint_speed
 		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
@@ -106,15 +105,15 @@ func walk(delta):
 		sprinting = false
 	
 	# Acceleration and Deacceleration
-	var temp_vel = velocity
+	var temp_vel: Vector3 = velocity
 	temp_vel.y = 0
-	var target = direction * speed
-	var tem_accel
+	var target: Vector3 = direction * speed
+	var temp_accel: int
 	if direction.dot(temp_vel) > 0:
-		tem_accel = acceleration 
+		temp_accel = acceleration 
 	else:
-		tem_accel = deacceleration
-	temp_vel = temp_vel.linear_interpolate(target, tem_accel * delta)
+		temp_accel = deacceleration
+	temp_vel = temp_vel.linear_interpolate(target, temp_accel * delta)
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
 	
@@ -122,7 +121,7 @@ func walk(delta):
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0), true)
 
 
-func fly(delta):
+func fly(delta: float) -> void:
 	# Input
 	direction = Vector3()
 	var aim = head.get_global_transform().basis
@@ -137,19 +136,19 @@ func fly(delta):
 	direction = direction.normalized()
 	
 	# Acceleration and Deacceleration
-	var target = direction * fly_speed
+	var target: Vector3 = direction * fly_speed
 	velocity = velocity.linear_interpolate(target, fly_accel * delta)
 	
 	# Move
 	velocity = move_and_slide(velocity)
 
 
-func camera_rotation(delta):
+func camera_rotation(delta: float) -> void:
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
 	if axis.length() > 0:
-		var mouse_x = -axis.x * mouse_sensitivity * delta
-		var mouse_y = -axis.y * mouse_sensitivity * delta
+		var mouse_x: float = -axis.x * mouse_sensitivity * delta
+		var mouse_y: float = -axis.y * mouse_sensitivity * delta
 		
 		axis = Vector2()
 		
@@ -157,6 +156,6 @@ func camera_rotation(delta):
 		
 		head.rotate_x(deg2rad(mouse_y))
 		
-		var temp_rot = head.rotation_degrees
+		var temp_rot: Vector3 = head.rotation_degrees
 		temp_rot.x = clamp(temp_rot.x, -90, 90)
 		head.rotation_degrees = temp_rot
