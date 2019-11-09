@@ -1,7 +1,7 @@
 extends Label
 
 
-export (bool) var enabled = true
+export var enabled: bool = true
 
 
 func _process(_delta: float) -> void:
