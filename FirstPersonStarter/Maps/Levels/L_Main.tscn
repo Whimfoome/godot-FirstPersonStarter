@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://FirstPersonStarter/Maps/Levels/Ls_Main.gd" type="Script" id=1]
-[ext_resource path="res://FirstPersonStarter/Maps/Levels/FPS_Counter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://FirstPersonStarter/Maps/Objects/FPS_Counter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://FirstPersonStarter/Core/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://FirstPersonStarter/Maps/Objects/Ladder.tscn" type="PackedScene" id=7]
 
