@@ -7,12 +7,12 @@ Modified by me.
 """
 
 # Camera
-export (float) var mouse_sensitivity = 10
-export (NodePath) var head_path
+export var mouse_sensitivity: float = 10.0
+export var head_path: NodePath
 onready var head: Spatial = get_node(head_path)
-export (NodePath) var cam_path
+export var cam_path: NodePath
 onready var cam: Camera = get_node(cam_path)
-export (float) var FOV = 90
+export var FOV: float = 90.0
 var axis: Vector2 = Vector2()
 # Move
 var velocity: Vector3 = Vector3()
@@ -21,19 +21,19 @@ var mvarray: Array = [false, false, false, false] # FW, BW, L, R
 var can_sprint: bool = true
 var sprinting: bool = false
 # Walk
-export (float) var gravity = 30.0
-export (int) var walk_speed = 10
-export (int) var sprint_speed = 16
-export (int) var acceleration = 6
-export (int) var deacceleration = 8
-export (int) var jump_height = 10
+export var gravity: float = 30.0
+export var walk_speed: int = 10
+export var sprint_speed: int = 16
+export var acceleration: int = 6
+export var deacceleration: int = 8
+export var jump_height: int = 10
 var grounded: bool = false
 # Fly
-export (int) var fly_speed = 10
-export (int) var fly_accel = 4
+export var fly_speed: int = 10
+export var fly_accel: int = 4
 var flying: bool = false
 # Slope
-export (NodePath) var slope_ray_path
+export var slope_ray_path: NodePath
 onready var slope_ray: RayCast = get_node(slope_ray_path)
 
 ##################################################

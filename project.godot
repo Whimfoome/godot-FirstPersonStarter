@@ -1129,4 +1129,4 @@ mouse_input={
 quality/filters/use_nearest_mipmap_filter=true
 quality/subsurface_scattering/quality=2
 quality/filters/msaa=2
-environment/default_environment="res://FirstPersonStarter/Maps/Environments/EntityEnv.tres"
+environment/default_environment="res://default_env.tres"

@@ -1,9 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://FirstPersonStarter/Maps/Levels/Ls_Main.gd" type="Script" id=1]
-[ext_resource path="res://FirstPersonStarter/Materials/M_Cube.material" type="Material" id=2]
-[ext_resource path="res://FirstPersonStarter/Materials/M_Cube2.material" type="Material" id=3]
-[ext_resource path="res://FirstPersonStarter/Maps/Environments/WorldEnv.res" type="Environment" id=4]
 [ext_resource path="res://FirstPersonStarter/Maps/Levels/FPS_Counter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://FirstPersonStarter/Core/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://FirstPersonStarter/Maps/Objects/Ladder.tscn" type="PackedScene" id=7]
@@ -11,16 +8,65 @@
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 1, 1, 1 )
 
-[sub_resource type="ConvexPolygonShape" id=2]
+[sub_resource type="SpatialMaterial" id=2]
+vertex_color_is_srgb = true
+albedo_color = Color( 0.105882, 0.113725, 0.141176, 1 )
+metallic_specular = 0.4
+
+[sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5 )
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=4]
 size = Vector3( 1, 1, 1 )
 
-[sub_resource type="ConvexPolygonShape" id=4]
+[sub_resource type="SpatialMaterial" id=5]
+vertex_color_is_srgb = true
+albedo_color = Color( 0.145098, 0.164706, 0.219608, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+vertex_color_is_srgb = true
+albedo_color = Color( 0.145098, 0.164706, 0.219608, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+vertex_color_is_srgb = true
+albedo_color = Color( 0.145098, 0.164706, 0.219608, 1 )
+
+[sub_resource type="SpatialMaterial" id=8]
+vertex_color_is_srgb = true
+albedo_color = Color( 0.145098, 0.164706, 0.219608, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=9]
 points = PoolVector3Array( -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5 )
 
-[sub_resource type="GIProbeData" id=5]
+[sub_resource type="SpatialMaterial" id=10]
+vertex_color_is_srgb = true
+albedo_color = Color( 0.145098, 0.164706, 0.219608, 1 )
+
+[sub_resource type="SpatialMaterial" id=11]
+vertex_color_is_srgb = true
+albedo_color = Color( 0.145098, 0.164706, 0.219608, 1 )
+
+[sub_resource type="SpatialMaterial" id=12]
+vertex_color_is_srgb = true
+albedo_color = Color( 0.145098, 0.164706, 0.219608, 1 )
+
+[sub_resource type="ProceduralSky" id=13]
+sky_top_color = Color( 0.164706, 0.364706, 0.580392, 1 )
+sky_horizon_color = Color( 0.835294, 0.937255, 1, 1 )
+sky_curve = 0.146205
+ground_bottom_color = Color( 0.835294, 0.937255, 1, 1 )
+ground_horizon_color = Color( 0.835294, 0.937255, 1, 1 )
+sun_latitude = 118.0
+sun_longitude = 4.0
+
+[sub_resource type="Environment" id=14]
+background_mode = 2
+background_sky = SubResource( 13 )
+ambient_light_sky_contribution = 0.88
+tonemap_mode = 3
+ssao_enabled = true
+
+[sub_resource type="GIProbeData" id=15]
 bounds = AABB( -30, -10, -30, 60, 20, 60 )
 cell_size = 0.46875
 to_cell_xform = Transform( 2.13333, 0, 0, 0, 2.13333, 0, 0, 0, 2.13333, 64, 21.3333, 64 )
@@ -39,89 +85,89 @@ script = ExtResource( 1 )
 transform = Transform( 40, 0, 0, 0, -1.74846e-006, -1, 0, 40, -4.37114e-008, 0.0313206, 9.53674e-007, 0.00365067 )
 use_in_baked_light = true
 mesh = SubResource( 1 )
-material/0 = ExtResource( 2 )
+material/0 = SubResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Floor"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Floor/StaticBody"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Slope1" type="MeshInstance" parent="ArenaGeometry"]
 transform = Transform( 12, 0, 0, 0, 3.74016, -0.226577, 0, 8.02083, 0.105654, -13.502, 1.517, 0.041 )
 use_in_baked_light = true
-mesh = SubResource( 3 )
-material/0 = ExtResource( 3 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Slope1"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Slope1/StaticBody"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="BigCube1" type="MeshInstance" parent="ArenaGeometry"]
 transform = Transform( -1.74846e-007, 12, -1.31134e-007, 0, -5.24537e-007, -3, -4, -5.24537e-007, 5.73206e-015, -13.5, 2, 6 )
 use_in_baked_light = true
-mesh = SubResource( 3 )
-material/0 = ExtResource( 3 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 6 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/BigCube1"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/BigCube1/StaticBody"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="BigCube2" type="MeshInstance" parent="ArenaGeometry"]
 transform = Transform( -1.74846e-007, 12, -1.31134e-007, 0, -5.24537e-007, -3, -4, -5.24537e-007, 5.73206e-015, 13.5, 2, -7.44552 )
 use_in_baked_light = true
-mesh = SubResource( 3 )
-material/0 = ExtResource( 3 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/BigCube2"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/BigCube2/StaticBody"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Wall1" type="MeshInstance" parent="ArenaGeometry"]
 transform = Transform( 1, 0, 0, 0, -1.74846e-006, -6, 0, 40, -2.62268e-007, -19.5, 3.5, 0 )
 use_in_baked_light = true
-mesh = SubResource( 3 )
-material/0 = ExtResource( 3 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 8 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall1"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall1/StaticBody"]
-shape = SubResource( 4 )
+shape = SubResource( 9 )
 
 [node name="Wall2" type="MeshInstance" parent="ArenaGeometry"]
 transform = Transform( 1, 0, 0, 0, -1.74846e-006, -6, 0, 40, -2.62268e-007, 19.5, 3.5, 0 )
 use_in_baked_light = true
-mesh = SubResource( 3 )
-material/0 = ExtResource( 3 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 10 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall2"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall2/StaticBody"]
-shape = SubResource( 4 )
+shape = SubResource( 9 )
 
 [node name="Wall3" type="MeshInstance" parent="ArenaGeometry"]
 transform = Transform( -4.37114e-008, 40, -2.62268e-007, 0, -1.74846e-006, -6, -1, -1.74846e-006, 1.14641e-014, 0, 3.5, 19.5 )
 use_in_baked_light = true
-mesh = SubResource( 3 )
-material/0 = ExtResource( 3 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 11 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall3"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall3/StaticBody"]
-shape = SubResource( 4 )
+shape = SubResource( 9 )
 
 [node name="Wall4" type="MeshInstance" parent="ArenaGeometry"]
 transform = Transform( -4.37114e-008, 40, -2.62268e-007, 0, -1.74846e-006, -6, -1, -1.74846e-006, 1.14641e-014, 0, 3.5, -19.5 )
 use_in_baked_light = true
-mesh = SubResource( 3 )
-material/0 = ExtResource( 3 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 12 )
 
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall4"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall4/StaticBody"]
-shape = SubResource( 4 )
+shape = SubResource( 9 )
 
 [node name="Lighting" type="Spatial" parent="."]
 
@@ -132,12 +178,12 @@ shadow_enabled = true
 directional_shadow_normal_bias = 0.1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
-environment = ExtResource( 4 )
+environment = SubResource( 14 )
 
 [node name="GIProbe" type="GIProbe" parent="Lighting"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.0848, 0 )
 extents = Vector3( 30, 10, 30 )
-data = SubResource( 5 )
+data = SubResource( 15 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
