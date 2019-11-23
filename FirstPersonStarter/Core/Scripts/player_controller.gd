@@ -1,10 +1,6 @@
 extends KinematicBody
 
-"""
-Original code from Jeremy Bullock: https://www.youtube.com/watch?v=Etpq-d5af6M&list=PLTZoMpB5Z4aD-rCpluXsQjkGYgUGUZNIV
-He explains the code very well, so if you have any questions, just head up to his channel.
-Modified by me.
-"""
+##################################################
 
 # Camera
 export var mouse_sensitivity: float = 10.0
@@ -83,7 +79,7 @@ func walk(delta: float) -> void:
 	elif !slope_ray.is_colliding():
 		grounded = false
 	if grounded and !is_on_floor():
-		var _collision: KinematicCollision  = move_and_collide(Vector3(0, -0.1, 0))
+		var _collision: KinematicCollision  = move_and_collide(Vector3(0, -0.05, 0))
 	
 	# Jump
 	if grounded and Input.is_action_just_pressed("moveJump"):
@@ -105,6 +101,7 @@ func walk(delta: float) -> void:
 		sprinting = false
 	
 	# Acceleration and Deacceleration
+	# where would the player go
 	var temp_vel: Vector3 = velocity
 	temp_vel.y = 0
 	var target: Vector3 = direction * speed
@@ -113,7 +110,13 @@ func walk(delta: float) -> void:
 		temp_accel = acceleration 
 	else:
 		temp_accel = deacceleration
+	# interpolation and clamping
 	temp_vel = temp_vel.linear_interpolate(target, temp_accel * delta)
+	if temp_vel.x < 0.25 && temp_vel.x > -0.25:
+		temp_vel.x = 0
+	if temp_vel.z < 0.25 && temp_vel.z > -0.25:
+		temp_vel.z = 0
+	# apply interpolation
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
 	

@@ -1124,6 +1124,10 @@ mouse_input={
 3d_physics/layer_1="Objects"
 3d_physics/layer_2="Player"
 
+[memory]
+
+limits/message_queue/max_size_kb=8192
+
 [rendering]
 
 quality/filters/use_nearest_mipmap_filter=true
