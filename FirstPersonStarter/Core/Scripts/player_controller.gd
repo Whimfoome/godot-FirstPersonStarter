@@ -112,10 +112,11 @@ func walk(delta: float) -> void:
 		temp_accel = deacceleration
 	# interpolation and clamping
 	temp_vel = temp_vel.linear_interpolate(target, temp_accel * delta)
-	if temp_vel.x < 0.25 && temp_vel.x > -0.25:
-		temp_vel.x = 0
-	if temp_vel.z < 0.25 && temp_vel.z > -0.25:
-		temp_vel.z = 0
+	if !direction.dot(temp_vel) > 0:
+		if temp_vel.x < 0.25 && temp_vel.x > -0.25:
+			temp_vel.x = 0
+		if temp_vel.z < 0.25 && temp_vel.z > -0.25:
+			temp_vel.z = 0
 	# apply interpolation
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
