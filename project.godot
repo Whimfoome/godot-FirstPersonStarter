@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="FirstPersonStarter"
-run/main_scene="res://FirstPersonStarter/Maps/Levels/L_Main.tscn"
+run/main_scene="res://scenes/s_main/s_main.tscn"
 config/icon="res://icon.png"
 
 [importer_defaults]

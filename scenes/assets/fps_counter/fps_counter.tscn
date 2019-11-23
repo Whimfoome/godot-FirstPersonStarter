@@ -1,6 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://FirstPersonStarter/Maps/Objects/FPS_Counter.gd" type="Script" id=1]
+[ext_resource path="res://scenes/assets/fps_counter/fps_counter.gd" type="Script" id=1]
+
+
 
 
 [node name="FPS_Counter" type="Label"]

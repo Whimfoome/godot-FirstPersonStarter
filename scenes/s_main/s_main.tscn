@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://FirstPersonStarter/Maps/Levels/Ls_Main.gd" type="Script" id=1]
-[ext_resource path="res://FirstPersonStarter/Maps/Objects/FPS_Counter.tscn" type="PackedScene" id=5]
-[ext_resource path="res://FirstPersonStarter/Core/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://FirstPersonStarter/Maps/Objects/Ladder.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/s_main/s_main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/assets/ladder/ladder.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/assets/fps_counter/fps_counter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 1, 1, 1 )
@@ -76,7 +76,7 @@ bias = 1.5
 normal_bias = 0.0
 propagation = 0.7
 
-[node name="L_Main" type="Spatial"]
+[node name="S_Main" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="ArenaGeometry" type="Spatial" parent="."]
@@ -185,10 +185,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.0848, 0 )
 extents = Vector3( 30, 10, 30 )
 data = SubResource( 15 )
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
+[node name="Player" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+head_path = NodePath("../Player/Head")
+cam_path = NodePath("../Player/Head/Camera")
+slope_ray_path = NodePath("../Player/SlopeRay")
 
-[node name="Ladder" parent="." instance=ExtResource( 7 )]
+[node name="Ladder" parent="." instance=ExtResource( 2 )]
 transform = Transform( -4.37114e-08, 0, 7, 0, 1.51, 0, -1, 0, -3.0598e-07, 13.25, 2, -5.25 )
 
-[node name="FPS_Counter" parent="." instance=ExtResource( 5 )]
+[node name="FPS_Counter" parent="." instance=ExtResource( 3 )]

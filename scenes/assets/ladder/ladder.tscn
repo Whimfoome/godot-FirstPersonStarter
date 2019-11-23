@@ -1,6 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://FirstPersonStarter/Maps/Objects/LadderScript.gd" type="Script" id=1]
+[ext_resource path="res://scenes/assets/ladder/ladder.gd" type="Script" id=1]
+
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.25, 1, 0.74966 )
