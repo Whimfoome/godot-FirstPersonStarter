@@ -11,7 +11,7 @@ var mouse_mode: String = "CAPTURED"
 
 func _ready() -> void:
 	if fast_close:
-		print("Fast Close Enabled in the 's_main' Script")
+		print("--- Fast Close enabled in the 's_main.gd' script ---")
 
 
 func _input(event: InputEvent) -> void:

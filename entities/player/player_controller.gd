@@ -58,16 +58,16 @@ func walk(delta: float) -> void:
 	mvarray = [false, false, false, false]
 	direction = Vector3()
 	var aim: Basis = get_global_transform().basis
-	if Input.is_action_pressed("moveForward"):
+	if Input.is_action_pressed("move_forward"):
 		direction -= aim.z
 		mvarray[0] = true
-	if Input.is_action_pressed("moveBackward"):
+	if Input.is_action_pressed("move_backward"):
 		direction += aim.z
 		mvarray[1] = true
-	if Input.is_action_pressed("moveLeft"):
+	if Input.is_action_pressed("move_left"):
 		direction -= aim.x
 		mvarray[2] = true
-	if Input.is_action_pressed("moveRight"):
+	if Input.is_action_pressed("move_right"):
 		direction += aim.x
 		mvarray[3] = true
 	direction.y = 0
@@ -82,7 +82,7 @@ func walk(delta: float) -> void:
 		var _collision: KinematicCollision  = move_and_collide(Vector3(0, -0.05, 0))
 	
 	# Jump
-	if grounded and Input.is_action_just_pressed("moveJump"):
+	if grounded and Input.is_action_just_pressed("move_jump"):
 		velocity.y = jump_height
 		grounded = false
 	
@@ -91,7 +91,7 @@ func walk(delta: float) -> void:
 	
 	# Sprint
 	var speed: int
-	if Input.is_action_pressed("moveSprint") && can_sprint && mvarray[0] == true && mvarray[1] != true:
+	if Input.is_action_pressed("move_sprint") && can_sprint && mvarray[0] == true && mvarray[1] != true:
 		speed = sprint_speed
 		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
 		sprinting = true
@@ -129,13 +129,13 @@ func fly(delta: float) -> void:
 	# Input
 	direction = Vector3()
 	var aim = head.get_global_transform().basis
-	if Input.is_action_pressed("moveForward"):
+	if Input.is_action_pressed("move_forward"):
 		direction -= aim.z
-	if Input.is_action_pressed("moveBackward"):
+	if Input.is_action_pressed("move_backward"):
 		direction += aim.z
-	if Input.is_action_pressed("moveLeft"):
+	if Input.is_action_pressed("move_left"):
 		direction -= aim.x
-	if Input.is_action_pressed("moveRight"):
+	if Input.is_action_pressed("move_right"):
 		direction += aim.x
 	direction = direction.normalized()
 	

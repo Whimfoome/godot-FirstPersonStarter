@@ -5,7 +5,6 @@ FPS template for Godot 3.2 to give starter content for a new or already existing
 
 #### Includes:
 - Example 3D Scene
-  - Environment
   - FPS Counter
 - 3D Character Controller
   - Perfect Camera Rotation
