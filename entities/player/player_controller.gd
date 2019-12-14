@@ -23,14 +23,14 @@ export var sprint_speed: int = 16
 export var acceleration: int = 6
 export var deacceleration: int = 8
 export var jump_height: int = 10
-var grounded: bool = false
+var floor_normal: Vector3 = Vector3(0, 1, 0)
 # Fly
 export var fly_speed: int = 10
 export var fly_accel: int = 4
 var flying: bool = false
-# Slope
-export var slope_ray_path: NodePath
-onready var slope_ray: RayCast = get_node(slope_ray_path)
+# Slopes
+export var raycast_path: NodePath
+onready var raycast: RayCast = get_node(raycast_path)
 
 ##################################################
 
@@ -73,18 +73,16 @@ func walk(delta: float) -> void:
 	direction.y = 0
 	direction = direction.normalized()
 	
-	# Grounded or Not and Slope Ray
-	if is_on_floor():
-		grounded = true
-	elif !slope_ray.is_colliding():
-		grounded = false
-	if grounded and !is_on_floor():
-		var _collision: KinematicCollision  = move_and_collide(Vector3(0, -0.05, 0))
+	# Grounded or Not
+	var snap: Vector3
+	var grounded: bool = is_on_floor()
 	
 	# Jump
-	if grounded and Input.is_action_just_pressed("move_jump"):
-		velocity.y = jump_height
-		grounded = false
+	if grounded:
+		snap = Vector3(0, -1, 0)
+		if Input.is_action_just_pressed("move_jump"):
+			snap = Vector3(0, 0, 0)
+			velocity.y = jump_height
 	
 	# Apply Gravity
 	velocity.y += -gravity * delta
@@ -110,19 +108,25 @@ func walk(delta: float) -> void:
 		temp_accel = acceleration 
 	else:
 		temp_accel = deacceleration
-	# interpolation and clamping
+	# interpolation
 	temp_vel = temp_vel.linear_interpolate(target, temp_accel * delta)
-	if !direction.dot(temp_vel) > 0:
-		if temp_vel.x < 0.25 && temp_vel.x > -0.25:
-			temp_vel.x = 0
-		if temp_vel.z < 0.25 && temp_vel.z > -0.25:
-			temp_vel.z = 0
-	# apply interpolation
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
 	
+	# Clamping to not slide donw on slopes
+	# getting floor_angle by converting radians to degrees the collision from the RayCast
+	var floor_angle: float = rad2deg(acos(raycast.get_collision_normal().dot(Vector3(0, 1, 0))))
+	if floor_angle > 1: # Do only on slopes
+		if !direction.dot(velocity) > 0:
+			if velocity.x < 1 && velocity.x > -1:
+				velocity.x = 0
+			if velocity.z < 1 && velocity.z > -1:
+				velocity.z = 0
+		if grounded && velocity.y < -0.5:
+			velocity.y = -0.5
+	
 	# Move
-	velocity = move_and_slide(velocity, Vector3(0, 1, 0), true)
+	velocity = move_and_slide_with_snap(velocity, snap, floor_normal, true)
 
 
 func fly(delta: float) -> void:

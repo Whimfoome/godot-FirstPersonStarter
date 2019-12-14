@@ -14,7 +14,7 @@ collision_mask = 3
 script = ExtResource( 1 )
 head_path = NodePath("Head")
 cam_path = NodePath("Head/Camera")
-slope_ray_path = NodePath("SlopeRay")
+raycast_path = NodePath("RayCast")
 
 [node name="Collision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -27,6 +27,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 fov = 90.0
 far = 250.0
 
-[node name="SlopeRay" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, 0 )
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0 )
 enabled = true
