@@ -113,7 +113,7 @@ func walk(delta: float) -> void:
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
 	
-	# Clamping to not slide donw on slopes
+	# Clamping to not slide down on slopes
 	# getting floor_angle by converting radians to degrees the collision from the RayCast
 	var floor_angle: float = rad2deg(acos(raycast.get_collision_normal().dot(Vector3(0, 1, 0))))
 	if floor_angle > 1: # Do only on slopes
