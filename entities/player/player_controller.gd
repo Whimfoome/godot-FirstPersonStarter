@@ -8,7 +8,7 @@ export var head_path: NodePath
 onready var head: Spatial = get_node(head_path)
 export var cam_path: NodePath
 onready var cam: Camera = get_node(cam_path)
-export var FOV: float = 90.0
+export var FOV: float = 80.0
 var axis: Vector2 = Vector2()
 # Move
 var velocity: Vector3 = Vector3()
@@ -23,6 +23,7 @@ export var sprint_speed: int = 16
 export var acceleration: int = 6
 export var deacceleration: int = 8
 export var jump_height: int = 10
+var grounded: bool
 var floor_normal: Vector3 = Vector3(0, 1, 0)
 # Fly
 export var fly_speed: int = 10
@@ -75,7 +76,7 @@ func walk(delta: float) -> void:
 	
 	# Grounded or Not
 	var snap: Vector3
-	var grounded: bool = is_on_floor()
+	grounded = is_on_floor()
 	
 	# Jump
 	if grounded:
@@ -130,6 +131,8 @@ func walk(delta: float) -> void:
 
 
 func fly(delta: float) -> void:
+	grounded = false
+	
 	# Input
 	direction = Vector3()
 	var aim = head.get_global_transform().basis
