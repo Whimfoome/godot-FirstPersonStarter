@@ -26,7 +26,7 @@ script = ExtResource( 2 )
 [node name="ArenaGeometry" type="Spatial" parent="."]
 
 [node name="Floor1" type="MeshInstance" parent="ArenaGeometry"]
-transform = Transform( 40, 0, 0, 0, -1.74846e-06, -1, 0, 40, -4.37114e-08, 0.0313206, 9.53674e-07, 0.00365067 )
+transform = Transform( 40, 0, 0, 0, -6.51683e-06, -1, 0, 40, -1.62921e-07, 0.0313206, 9.53674e-07, 0.00365067 )
 use_in_baked_light = true
 mesh = SubResource( 1 )
 material/0 = ExtResource( 6 )

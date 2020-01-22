@@ -7,12 +7,17 @@ FPS template for Godot 3.2 to give starter content for a new or already existing
 - Example 3D Scene
   - FPS Counter
 - 3D Character Controller
-  - Perfect Camera Rotation
+  - Smooth Camera Rotation
   - Smooth Walking (Acceleration and Deacceleration)
   - Sprinting
   - Ladder Climbing
   - Slope Rays
   - Easily Adjustable from the Inspector
+
+#### Controls:
+- Move with `W` `A` `S` `D` or `↑` `←` `↓` `→`
+- Unlock/Lock Mouse with `Shift + F1`
+- Close Game with `Esc`
 
 #### Additional:
 - Thanks to the awesome Godot community for being helpful to anyone with problems, for making amazing tutorials, for writing the documentation and being supportive.

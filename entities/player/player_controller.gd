@@ -20,18 +20,18 @@ var sprinting: bool = false
 export var gravity: float = 30.0
 export var walk_speed: int = 10
 export var sprint_speed: int = 16
-export var acceleration: int = 6
-export var deacceleration: int = 8
+export var acceleration: int = 8
+export var deacceleration: int = 10
 export var jump_height: int = 10
 var grounded: bool
-var floor_normal: Vector3 = Vector3(0, 1, 0)
+const FLOOR_NORMAL: Vector3 = Vector3(0, 1, 0)
 # Fly
 export var fly_speed: int = 10
 export var fly_accel: int = 4
 var flying: bool = false
 # Slopes
-export var raycast_path: NodePath
-onready var raycast: RayCast = get_node(raycast_path)
+export var floor_max_angle: float = 45
+const VELOCITY_CLAMP: float = 0.25
 
 ##################################################
 
@@ -113,21 +113,16 @@ func walk(delta: float) -> void:
 	temp_vel = temp_vel.linear_interpolate(target, temp_accel * delta)
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
-	
-	# Clamping to not slide down on slopes
-	# getting floor_angle by converting radians to degrees the collision from the RayCast
-	var floor_angle: float = rad2deg(acos(raycast.get_collision_normal().dot(Vector3(0, 1, 0))))
-	if floor_angle > 1: # Do only on slopes
-		if !direction.dot(velocity) > 0:
-			if velocity.x < 1 && velocity.x > -1:
-				velocity.x = 0
-			if velocity.z < 1 && velocity.z > -1:
-				velocity.z = 0
-		if grounded && velocity.y < -0.5:
-			velocity.y = -0.5
+	# clamping
+	if !direction.dot(velocity) > 0:
+		if velocity.x < VELOCITY_CLAMP && velocity.x > -VELOCITY_CLAMP:
+			velocity.x = 0
+		if velocity.z < VELOCITY_CLAMP && velocity.z > -VELOCITY_CLAMP:
+			velocity.z = 0
 	
 	# Move
-	velocity = move_and_slide_with_snap(velocity, snap, floor_normal, true)
+	velocity.y = move_and_slide_with_snap(velocity, snap, FLOOR_NORMAL, true, 4, deg2rad(floor_max_angle)).y
+	print(velocity)
 
 
 func fly(delta: float) -> void:
