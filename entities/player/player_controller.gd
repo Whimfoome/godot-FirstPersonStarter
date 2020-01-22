@@ -114,7 +114,7 @@ func walk(delta: float) -> void:
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
 	# clamping
-	if !direction.dot(velocity) > 0:
+	if direction.dot(velocity) == 0:
 		if velocity.x < VELOCITY_CLAMP && velocity.x > -VELOCITY_CLAMP:
 			velocity.x = 0
 		if velocity.z < VELOCITY_CLAMP && velocity.z > -VELOCITY_CLAMP:

@@ -11,7 +11,7 @@ FPS template for Godot 3.2 to give starter content for a new or already existing
   - Smooth Walking (Acceleration and Deacceleration)
   - Sprinting
   - Ladder Climbing
-  - Slope Rays
+  - Slope Support
   - Easily Adjustable from the Inspector
 
 #### Controls:
