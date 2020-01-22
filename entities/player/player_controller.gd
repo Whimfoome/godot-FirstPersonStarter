@@ -122,7 +122,6 @@ func walk(delta: float) -> void:
 	
 	# Move
 	velocity.y = move_and_slide_with_snap(velocity, snap, FLOOR_NORMAL, true, 4, deg2rad(floor_max_angle)).y
-	print(velocity)
 
 
 func fly(delta: float) -> void:
