@@ -4,7 +4,7 @@ extends Spatial
 #-----------------SCENE--SCRIPT------------------# Change mouse mode by clicking 'Shift + F1'
 ##################################################
 
-export var fast_close: bool = true
+export(bool) var fast_close = true
 var mouse_mode: String = "CAPTURED"
 
 ##################################################

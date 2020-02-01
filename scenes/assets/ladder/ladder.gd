@@ -6,6 +6,7 @@ extends Area
 # *You can use Groups or Classes too, but I prefer this method*
 # Learn more on this GDQuest's video: https://www.youtube.com/watch?v=UZu8NwlkXcU
 
+
 func _on_body_entered(body: PhysicsBody) -> void:
 	body.flying = true
 
