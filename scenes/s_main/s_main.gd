@@ -1,8 +1,9 @@
 extends Spatial
 
-################################################## Close your game faster by clicking 'Esc'
-#-----------------SCENE--SCRIPT------------------# Change mouse mode by clicking 'Shift + F1'
-##################################################
+#-----------------SCENE--SCRIPT------------------#
+#    Close your game faster by clicking 'Esc'    #
+#   Change mouse mode by clicking 'Shift + F1'   #
+#------------------------------------------------#
 
 export(bool) var fast_close = true
 var mouse_mode: String = "CAPTURED"

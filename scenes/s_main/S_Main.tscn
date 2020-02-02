@@ -126,35 +126,11 @@ shape = SubResource( 4 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
 environment = ExtResource( 1 )
 
-[node name="OmniLight1" type="OmniLight" parent="Lighting"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0 )
-light_color = Color( 0.811765, 0.905882, 1, 1 )
-light_energy = 1.5
-omni_range = 25.0
-
-[node name="OmniLight2" type="OmniLight" parent="Lighting"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, 12 )
-light_color = Color( 0.811765, 0.905882, 1, 1 )
-light_energy = 1.5
-omni_range = 25.0
-
-[node name="OmniLight3" type="OmniLight" parent="Lighting"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 7, -12 )
-light_color = Color( 0.811765, 0.905882, 1, 1 )
-light_energy = 1.5
-omni_range = 25.0
-
-[node name="OmniLight4" type="OmniLight" parent="Lighting"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 7, 12 )
-light_color = Color( 0.811765, 0.905882, 1, 1 )
-light_energy = 1.5
-omni_range = 25.0
-
-[node name="OmniLight5" type="OmniLight" parent="Lighting"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, -12 )
-light_color = Color( 0.811765, 0.905882, 1, 1 )
-light_energy = 1.5
-omni_range = 25.0
+[node name="DirectionalLight" type="DirectionalLight" parent="Lighting"]
+transform = Transform( 0.965926, 0.198266, 0.166365, -2.09447e-07, -0.642788, 0.766044, 0.258818, -0.739942, -0.620885, 2.17494, 9.39172, -2.14115 )
+light_energy = 2.0
+shadow_enabled = true
+shadow_color = Color( 0.6, 0.6, 0.6, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
