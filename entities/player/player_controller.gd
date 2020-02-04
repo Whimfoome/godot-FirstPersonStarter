@@ -13,7 +13,8 @@ onready var cam: Camera = get_node(cam_path)
 # Move
 var velocity := Vector3()
 var direction := Vector3()
-var mvarray: Array = [false, false, false, false] # FW, BW, L, R
+var move_axis_hor := 0.0
+var move_axis_ver := 0.0
 var can_sprint := true
 var sprinting := false
 # Walk
@@ -55,27 +56,42 @@ func _physics_process(delta: float) -> void:
 
 # Called when there is an input event
 func _input(event: InputEvent) -> void:
+	# Mouse Axis
 	if event is InputEventMouseMotion:
 		mouse_axis = event.relative
+	
+	# Move Axis
+	if event is InputEventKey:
+		if event.is_action_pressed("move_forward"):
+			move_axis_ver += 1
+		if event.is_action_released("move_forward"):
+			move_axis_ver -= 1
+		if event.is_action_pressed("move_backward"):
+			move_axis_ver -= 1
+		if event.is_action_released("move_backward"):
+			move_axis_ver += 1
+		if event.is_action_pressed("move_right"):
+			move_axis_hor += 1
+		if event.is_action_released("move_right"):
+			move_axis_hor -= 1
+		if event.is_action_pressed("move_left"):
+			move_axis_hor -= 1
+		if event.is_action_released("move_left"):
+			move_axis_hor += 1
 
 
 func walk(delta: float) -> void:
 	# Input
-	mvarray = [false, false, false, false]
 	direction = Vector3()
 	var aim: Basis = get_global_transform().basis
-	if Input.is_action_pressed("move_forward"):
+	if move_axis_ver == 1:
 		direction -= aim.z
-		mvarray[0] = true
-	if Input.is_action_pressed("move_backward"):
+	if move_axis_ver == -1:
 		direction += aim.z
-		mvarray[1] = true
-	if Input.is_action_pressed("move_left"):
+	if move_axis_hor == -1:
 		direction -= aim.x
-		mvarray[2] = true
-	if Input.is_action_pressed("move_right"):
+	if move_axis_hor == 1:
 		direction += aim.x
-		mvarray[3] = true
 	direction.y = 0
 	direction = direction.normalized()
 	
@@ -96,7 +112,7 @@ func walk(delta: float) -> void:
 	# Sprint
 	var _speed: int
 	if (Input.is_action_pressed("move_sprint") and can_sprint 
-			and mvarray[0] == true and mvarray[1] != true):
+			and move_axis_ver == 1):
 		_speed = sprint_speed
 		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
 		sprinting = true
@@ -138,13 +154,13 @@ func fly(delta: float) -> void:
 	# Input
 	direction = Vector3()
 	var aim = head.get_global_transform().basis
-	if Input.is_action_pressed("move_forward"):
+	if move_axis_ver == 1:
 		direction -= aim.z
-	if Input.is_action_pressed("move_backward"):
+	if move_axis_ver == -1:
 		direction += aim.z
-	if Input.is_action_pressed("move_left"):
+	if move_axis_hor == -1:
 		direction -= aim.x
-	if Input.is_action_pressed("move_right"):
+	if move_axis_hor == 1:
 		direction += aim.x
 	direction = direction.normalized()
 	
