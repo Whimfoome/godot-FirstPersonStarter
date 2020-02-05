@@ -3,10 +3,10 @@ extends KinematicBody
 ###################-VARIABLES-####################
 
 # Camera
-export(float) var mouse_sensitivity = 10.0
-export(NodePath) var head_path
-export(NodePath) var cam_path
-export(float) var FOV = 80.0
+export var mouse_sensitivity := 10.0
+export var head_path: NodePath
+export var cam_path: NodePath
+export var FOV := 80.0
 var mouse_axis := Vector2()
 onready var head: Spatial = get_node(head_path)
 onready var cam: Camera = get_node(cam_path)
@@ -17,20 +17,20 @@ var move_axis := Vector2()
 var can_sprint := true
 var sprinting := false
 # Walk
-const FLOOR_NORMAL: Vector3 = Vector3(0, 1, 0)
-export(float) var gravity = 30.0
-export(int) var walk_speed = 10
-export(int) var sprint_speed = 16
-export(int) var acceleration = 8
-export(int) var deacceleration = 10
-export(int) var jump_height = 10
+const FLOOR_NORMAL := Vector3(0, 1, 0)
+export var gravity := 30.0
+export var walk_speed := 10
+export var sprint_speed := 16
+export var acceleration := 8
+export var deacceleration := 10
+export var jump_height := 10
 var grounded: bool
 # Fly
-export(int) var fly_speed = 10
-export(int) var fly_accel = 4
+export var fly_speed := 10
+export var fly_accel := 4
 var flying := false
 # Slopes
-export(float) var floor_max_angle = 45
+export var floor_max_angle := 45.0
 
 ##################################################
 
@@ -47,6 +47,10 @@ func _process(_delta: float) -> void:
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
+	# Move Axis (Works with Keyboard and Joypad)
+	move_axis.x = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
+	move_axis.y = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	
 	if flying:
 		fly(delta)
 	else:
@@ -55,18 +59,8 @@ func _physics_process(delta: float) -> void:
 
 # Called when there is an input event
 func _input(event: InputEvent) -> void:
-	# Mouse Axis
 	if event is InputEventMouseMotion:
 		mouse_axis = event.relative
-	
-	# Move Axis Keyboard
-	if event is InputEventKey:
-		move_axis_keyboard(event)
-	
-	# Move Axis Joypad
-	#if event is InputEventJoypad...:
-		#move_axis.x = event.get_action_strength("move_forward") - event.get_action_strength("move_backward")
-		#move_axis.y = event.get_action_strength("move_right") - event.get_action_strength("move_left")
 
 
 func walk(delta: float) -> void:
@@ -178,22 +172,3 @@ func camera_rotation() -> void:
 		var temp_rot: Vector3 = head.rotation_degrees
 		temp_rot.x = clamp(temp_rot.x, -90, 90)
 		head.rotation_degrees = temp_rot
-
-
-func move_axis_keyboard(event: InputEvent) -> void:
-	if event.is_action_pressed("move_forward"):
-		move_axis.x += 1
-	if event.is_action_released("move_forward"):
-		move_axis.x -= 1
-	if event.is_action_pressed("move_backward"):
-		move_axis.x -= 1
-	if event.is_action_released("move_backward"):
-		move_axis.x += 1
-	if event.is_action_pressed("move_right"):
-		move_axis.y += 1
-	if event.is_action_released("move_right"):
-		move_axis.y -= 1
-	if event.is_action_pressed("move_left"):
-		move_axis.y -= 1
-	if event.is_action_released("move_left"):
-		move_axis.y += 1
