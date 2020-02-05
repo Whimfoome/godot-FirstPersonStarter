@@ -13,8 +13,7 @@ onready var cam: Camera = get_node(cam_path)
 # Move
 var velocity := Vector3()
 var direction := Vector3()
-var move_axis_hor := 0.0
-var move_axis_ver := 0.0
+var move_axis := Vector2()
 var can_sprint := true
 var sprinting := false
 # Walk
@@ -60,37 +59,27 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_axis = event.relative
 	
-	# Move Axis
+	# Move Axis Keyboard
 	if event is InputEventKey:
-		if event.is_action_pressed("move_forward"):
-			move_axis_ver += 1
-		if event.is_action_released("move_forward"):
-			move_axis_ver -= 1
-		if event.is_action_pressed("move_backward"):
-			move_axis_ver -= 1
-		if event.is_action_released("move_backward"):
-			move_axis_ver += 1
-		if event.is_action_pressed("move_right"):
-			move_axis_hor += 1
-		if event.is_action_released("move_right"):
-			move_axis_hor -= 1
-		if event.is_action_pressed("move_left"):
-			move_axis_hor -= 1
-		if event.is_action_released("move_left"):
-			move_axis_hor += 1
+		move_axis_keyboard(event)
+	
+	# Move Axis Joypad
+	#if event is InputEventJoypad...:
+		#move_axis.x = event.get_action_strength("move_forward") - event.get_action_strength("move_backward")
+		#move_axis.y = event.get_action_strength("move_right") - event.get_action_strength("move_left")
 
 
 func walk(delta: float) -> void:
 	# Input
 	direction = Vector3()
 	var aim: Basis = get_global_transform().basis
-	if move_axis_ver == 1:
+	if move_axis.x == 1:
 		direction -= aim.z
-	if move_axis_ver == -1:
+	if move_axis.x == -1:
 		direction += aim.z
-	if move_axis_hor == -1:
+	if move_axis.y == -1:
 		direction -= aim.x
-	if move_axis_hor == 1:
+	if move_axis.y == 1:
 		direction += aim.x
 	direction.y = 0
 	direction = direction.normalized()
@@ -111,8 +100,7 @@ func walk(delta: float) -> void:
 	
 	# Sprint
 	var _speed: int
-	if (Input.is_action_pressed("move_sprint") and can_sprint 
-			and move_axis_ver == 1):
+	if (Input.is_action_pressed("move_sprint") and can_sprint and move_axis.x == 1):
 		_speed = sprint_speed
 		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
 		sprinting = true
@@ -154,13 +142,13 @@ func fly(delta: float) -> void:
 	# Input
 	direction = Vector3()
 	var aim = head.get_global_transform().basis
-	if move_axis_ver == 1:
+	if move_axis.x == 1:
 		direction -= aim.z
-	if move_axis_ver == -1:
+	if move_axis.x == -1:
 		direction += aim.z
-	if move_axis_hor == -1:
+	if move_axis.y == -1:
 		direction -= aim.x
-	if move_axis_hor == 1:
+	if move_axis.y == 1:
 		direction += aim.x
 	direction = direction.normalized()
 	
@@ -190,3 +178,22 @@ func camera_rotation() -> void:
 		var temp_rot: Vector3 = head.rotation_degrees
 		temp_rot.x = clamp(temp_rot.x, -90, 90)
 		head.rotation_degrees = temp_rot
+
+
+func move_axis_keyboard(event: InputEvent) -> void:
+	if event.is_action_pressed("move_forward"):
+		move_axis.x += 1
+	if event.is_action_released("move_forward"):
+		move_axis.x -= 1
+	if event.is_action_pressed("move_backward"):
+		move_axis.x -= 1
+	if event.is_action_released("move_backward"):
+		move_axis.x += 1
+	if event.is_action_pressed("move_right"):
+		move_axis.y += 1
+	if event.is_action_released("move_right"):
+		move_axis.y -= 1
+	if event.is_action_pressed("move_left"):
+		move_axis.y -= 1
+	if event.is_action_released("move_left"):
+		move_axis.y += 1
