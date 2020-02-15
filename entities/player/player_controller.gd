@@ -23,8 +23,8 @@ export var walk_speed := 10
 export var sprint_speed := 16
 export var acceleration := 8
 export var deacceleration := 10
+export(float, 0, 1, 0.05) var air_control := 0.3
 export var jump_height := 10
-var grounded: bool
 # Fly
 export var fly_speed := 10
 export var fly_accel := 4
@@ -78,19 +78,16 @@ func walk(delta: float) -> void:
 	direction.y = 0
 	direction = direction.normalized()
 	
-	# Grounded or Not
-	var _snap: Vector3
-	grounded = is_on_floor()
-	
 	# Jump
-	if grounded:
+	var _snap: Vector3
+	if is_on_floor():
 		_snap = Vector3(0, -1, 0)
 		if Input.is_action_just_pressed("move_jump"):
 			_snap = Vector3(0, 0, 0)
 			velocity.y = jump_height
 	
 	# Apply Gravity
-	velocity.y += -gravity * delta
+	velocity.y -= gravity * delta
 	
 	# Sprint
 	var _speed: int
@@ -108,11 +105,13 @@ func walk(delta: float) -> void:
 	var _temp_vel: Vector3 = velocity
 	_temp_vel.y = 0
 	var _target: Vector3 = direction * _speed
-	var _temp_accel: int
+	var _temp_accel: float
 	if direction.dot(_temp_vel) > 0:
-		_temp_accel = acceleration 
+		_temp_accel = acceleration
 	else:
 		_temp_accel = deacceleration
+	if not is_on_floor():
+		_temp_accel *= air_control
 	# interpolation
 	_temp_vel = _temp_vel.linear_interpolate(_target, _temp_accel * delta)
 	velocity.x = _temp_vel.x
@@ -131,8 +130,6 @@ func walk(delta: float) -> void:
 
 
 func fly(delta: float) -> void:
-	grounded = false
-	
 	# Input
 	direction = Vector3()
 	var aim = head.get_global_transform().basis

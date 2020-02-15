@@ -5,7 +5,7 @@ extends Spatial
 #   Change mouse mode by clicking 'Shift + F1'   #
 #------------------------------------------------#
 
-export(bool) var fast_close = true
+export var fast_close := true
 var mouse_mode: String = "CAPTURED"
 
 ##################################################

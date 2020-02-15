@@ -2,7 +2,7 @@ extends Label
 
 ##################################################
 
-export(bool) var enabled = true
+export var enabled := true
 
 ##################################################
 

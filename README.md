@@ -1,5 +1,5 @@
 # godot-FirstPersonStarter
-![Screenshot of FirstPersonStarter Template](https://i.imgur.com/kfzlnpZ.png)
+![Screenshot of FirstPersonStarter Template](https://i.imgur.com/EzNSoQZ.png)
 
 FPS template for Godot 3.2 to give starter content for a new or already existing project!
 
@@ -11,6 +11,7 @@ FPS template for Godot 3.2 to give starter content for a new or already existing
 - 3D Character Controller
   - Smooth Camera Rotation
   - Smooth Walking (Acceleration and Deacceleration)
+  - Air Control
   - Sprinting
   - Flying
   - Slope Support
