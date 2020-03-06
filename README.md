@@ -1,4 +1,4 @@
-# godot-FirstPersonStarter
+# First Person Starter
 ![Screenshot of FirstPersonStarter Template](https://i.imgur.com/EzNSoQZ.png)
 
 FPS template for Godot 3.2 to give starter content for a new or already existing project!

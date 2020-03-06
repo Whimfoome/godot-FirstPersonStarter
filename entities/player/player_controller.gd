@@ -23,7 +23,7 @@ export var walk_speed := 10
 export var sprint_speed := 16
 export var acceleration := 8
 export var deacceleration := 10
-export(float, 0, 1, 0.05) var air_control := 0.3
+export(float, 0.0, 1.0, 0.05) var air_control := 0.3
 export var jump_height := 10
 # Fly
 export var fly_speed := 10
@@ -42,15 +42,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta: float) -> void:
+	move_axis.x = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
+	move_axis.y = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	
 	camera_rotation()
 
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
-	# Move Axis (Works with Keyboard and Joypad)
-	move_axis.x = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
-	move_axis.y = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	
 	if flying:
 		fly(delta)
 	else:
@@ -116,7 +115,7 @@ func walk(delta: float) -> void:
 	_temp_vel = _temp_vel.linear_interpolate(_target, _temp_accel * delta)
 	velocity.x = _temp_vel.x
 	velocity.z = _temp_vel.z
-	# clamping
+	# clamping (to stop on slopes)
 	if direction.dot(velocity) == 0:
 		var _vel_clamp := 0.25
 		if velocity.x < _vel_clamp and velocity.x > -_vel_clamp:
