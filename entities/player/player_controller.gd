@@ -34,7 +34,7 @@ export var floor_max_angle := 45.0
 
 ##################################################
 
-# Called when the node enters the scene tree for the first time
+# Called when the node enters the scene tree
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cam.fov = FOV
@@ -66,13 +66,13 @@ func walk(delta: float) -> void:
 	# Input
 	direction = Vector3()
 	var aim: Basis = get_global_transform().basis
-	if move_axis.x == 1:
+	if move_axis.x >= 0.5:
 		direction -= aim.z
-	if move_axis.x == -1:
+	if move_axis.x <= -0.5:
 		direction += aim.z
-	if move_axis.y == -1:
+	if move_axis.y <= -0.5:
 		direction -= aim.x
-	if move_axis.y == 1:
+	if move_axis.y >= 0.5:
 		direction += aim.x
 	direction.y = 0
 	direction = direction.normalized()
