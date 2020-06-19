@@ -3,10 +3,10 @@ extends KinematicBody
 ###################-VARIABLES-####################
 
 # Camera
-export var mouse_sensitivity := 10.0
-export var head_path: NodePath
-export var cam_path: NodePath
-export var FOV := 80.0
+export(float) var mouse_sensitivity = 12.0
+export(NodePath) var head_path
+export(NodePath) var cam_path
+export(float) var FOV = 80.0
 var mouse_axis := Vector2()
 onready var head: Spatial = get_node(head_path)
 onready var cam: Camera = get_node(cam_path)
@@ -18,19 +18,19 @@ var can_sprint := true
 var sprinting := false
 # Walk
 const FLOOR_NORMAL := Vector3(0, 1, 0)
-export var gravity := 30.0
-export var walk_speed := 10
-export var sprint_speed := 16
-export var acceleration := 8
-export var deacceleration := 10
-export(float, 0.0, 1.0, 0.05) var air_control := 0.3
-export var jump_height := 10
+export(float) var gravity = 30.0
+export(int) var walk_speed = 10
+export(int) var sprint_speed = 16
+export(int) var acceleration = 8
+export(int) var deacceleration = 10
+export(float, 0.0, 1.0, 0.05) var air_control = 0.3
+export(int) var jump_height = 10
 # Fly
-export var fly_speed := 10
-export var fly_accel := 4
+export(int) var fly_speed = 10
+export(int) var fly_accel = 4
 var flying := false
 # Slopes
-export var floor_max_angle := 45.0
+export(float) var floor_max_angle = 45.0
 
 ##################################################
 
@@ -154,10 +154,8 @@ func camera_rotation() -> void:
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
 	if mouse_axis.length() > 0:
-		var _smoothness := 80
-		# Get mouse delta
-		var horizontal: float = -(mouse_axis.x * mouse_sensitivity) / _smoothness
-		var vertical: float = -(mouse_axis.y * mouse_sensitivity) / _smoothness
+		var horizontal: float = -mouse_axis.x * (mouse_sensitivity / 100)
+		var vertical: float = -mouse_axis.y * (mouse_sensitivity / 100)
 		
 		mouse_axis = Vector2()
 		

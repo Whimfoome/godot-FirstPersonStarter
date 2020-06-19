@@ -23,5 +23,6 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
+keep_aspect = 0
 fov = 80.0
 far = 250.0
