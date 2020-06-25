@@ -90,7 +90,7 @@ func walk(delta: float) -> void:
 	
 	# Sprint
 	var _speed: int
-	if (Input.is_action_pressed("move_sprint") and can_sprint and move_axis.x == 1):
+	if (Input.is_action_pressed("move_sprint") and can_sprint and move_axis.x >= 0.5):
 		_speed = sprint_speed
 		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
 		sprinting = true
