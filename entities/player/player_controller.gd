@@ -132,13 +132,13 @@ func fly(delta: float) -> void:
 	# Input
 	direction = Vector3()
 	var aim = head.get_global_transform().basis
-	if move_axis.x == 1:
+	if move_axis.x >= 0.5:
 		direction -= aim.z
-	if move_axis.x == -1:
+	if move_axis.x <= -0.5:
 		direction += aim.z
-	if move_axis.y == -1:
+	if move_axis.y <= -0.5:
 		direction -= aim.x
-	if move_axis.y == 1:
+	if move_axis.y >= 0.5:
 		direction += aim.x
 	direction = direction.normalized()
 	
