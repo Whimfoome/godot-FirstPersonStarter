@@ -124,11 +124,21 @@ func walk(delta: float) -> void:
 			velocity.z = 0
 	
 	# Move
-	velocity.y = move_and_slide_with_snap(velocity, _snap, FLOOR_NORMAL, 
-			true, 4, deg2rad(floor_max_angle)).y
+	if (is_on_floor()):
+		
+		#if  (is_on_wall()):
+			#print("velocity: floor, wall")    ### THE IDEA OF WALL CHECKING SEEMS TO BE QUITE BAD AT PERFORMANCE, IT WOUDLD HAVE MADE YOU NOT BE ABLE TO USE TOO MUCH MOMENTUM UP WALLS BUT OH WELL.
+			#velocity = move_and_slide(velocity, FLOOR_NORMAL, true, 4, deg2rad(floor_max_angle))
+		#else:
+			#print("velocity: floor")
+		velocity.y = move_and_slide_with_snap(velocity, _snap, FLOOR_NORMAL, true, 4, deg2rad(floor_max_angle)).y # this would have been indented
+	
+	else:
+		#print("velocity:")
+		velocity = move_and_slide(velocity, FLOOR_NORMAL, true, 4, deg2rad(floor_max_angle))
+	
 
-
-func fly(delta: float) -> void:
+func fly(delta: float) -> void: #never used this idk what it's for so i've never tested it :/
 	# Input
 	direction = Vector3()
 	var aim = head.get_global_transform().basis

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/s_main/default_env.tres" type="Environment" id=1]
 [ext_resource path="res://scenes/s_main/s_main.gd" type="Script" id=2]
@@ -17,8 +17,19 @@ points = PoolVector3Array( -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 
 [sub_resource type="CubeMesh" id=3]
 size = Vector3( 1, 1, 1 )
 
-[sub_resource type="ConvexPolygonShape" id=4]
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.485207, 1, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=5]
 points = PoolVector3Array( -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5 )
+
+[sub_resource type="SphereShape" id=6]
+
+[sub_resource type="SphereMesh" id=7]
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.576471, 0.0392157, 0.0392157, 1 )
+metallic = 0.6
 
 [node name="S_Main" type="Spatial"]
 script = ExtResource( 2 )
@@ -46,6 +57,84 @@ material/0 = ExtResource( 7 )
 transform = Transform( 1, 0, 0, 0, 1, 9.31323e-10, 0, -9.53674e-07, 1, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Slope1/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -9.53674e-07, 1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Slope3" type="MeshInstance" parent="ArenaGeometry"]
+transform = Transform( 12, 0, 0, 0, 6.2579, 0.176777, 0, -6.2579, 0.176777, -13.502, 1.517, -15.1816 )
+use_in_baked_light = true
+mesh = SubResource( 3 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Slope3"]
+transform = Transform( 1, 0, 0, 0, 1, 9.31323e-10, 0, -9.53674e-07, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Slope3/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -9.53674e-07, 1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Slope4" type="MeshInstance" parent="ArenaGeometry"]
+transform = Transform( 12, 0, 0, 0, -1.44185e-06, -0.25, 0, 8.85, -4.07301e-08, -13.502, 4.69397, -16.7616 )
+use_in_baked_light = true
+mesh = SubResource( 3 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Slope4"]
+transform = Transform( 1, 0, 0, 0, 1, 9.31323e-10, 0, -9.53674e-07, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Slope4/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -9.53674e-07, 1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Slope5" type="MeshInstance" parent="ArenaGeometry"]
+transform = Transform( 12, 0, 0, 0, 6.2579, -0.176777, 0, 6.2579, 0.176777, -2.36785, 2.87078, -16.612 )
+use_in_baked_light = true
+mesh = SubResource( 3 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Slope5"]
+transform = Transform( 1, 0, 0, 0, 1, 9.31323e-10, 0, -9.53674e-07, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Slope5/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -9.53674e-07, 1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Slope6" type="MeshInstance" parent="ArenaGeometry"]
+transform = Transform( 12, 0, 0, 0, -1.44185e-06, -0.25, 0, 8.85, -4.07301e-08, -3.79069, 9.06278, -16.7616 )
+use_in_baked_light = true
+mesh = SubResource( 3 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Slope6"]
+transform = Transform( 1, 0, 0, 0, 1, 9.31323e-10, 0, -9.53674e-07, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Slope6/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 2.22045e-16, 0, -9.53674e-07, 1, 0, -0.500427, 3.8147e-06 )
+shape = SubResource( 4 )
+
+[node name="Slope2" type="MeshInstance" parent="ArenaGeometry"]
+transform = Transform( 8.31735, 2.69603, 0.163323, 0, 8.02082, -0.105655, -8.64995, 2.59236, 0.157043, 5.15391, 1.517, 5.28803 )
+use_in_baked_light = true
+mesh = SubResource( 3 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Slope2"]
+transform = Transform( 1, 0, 0, 0, 1, 9.31323e-10, 0, -9.53674e-07, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Slope2/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -9.53674e-07, 1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="A ROOF!" type="MeshInstance" parent="ArenaGeometry"]
+transform = Transform( 12, 0, 0, 0, -1.44185e-06, -0.25, 0, 8.85, -4.07301e-08, -13.445, 4.01233, 14.5939 )
+use_in_baked_light = true
+mesh = SubResource( 3 )
+material/0 = ExtResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/A ROOF!"]
+transform = Transform( 1, 0, 0, 0, 1, 9.31323e-10, 0, -9.53674e-07, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/A ROOF!/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, -9.53674e-07, 1, 0, 0, 0 )
 shape = SubResource( 2 )
 
@@ -86,7 +175,7 @@ material/0 = ExtResource( 7 )
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall1"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall1/StaticBody"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Wall2" type="MeshInstance" parent="ArenaGeometry"]
 transform = Transform( 1, 0, 0, 0, -1.74846e-06, -6, 0, 40, -2.62268e-07, 19.5, 3.5, 0 )
@@ -97,7 +186,7 @@ material/0 = ExtResource( 7 )
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall2"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall2/StaticBody"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Wall3" type="MeshInstance" parent="ArenaGeometry"]
 transform = Transform( -4.37114e-08, 40, -2.62268e-07, 0, -1.74846e-06, -6, -1, -1.74846e-06, 1.14641e-14, 0, 3.5, 19.5 )
@@ -108,7 +197,7 @@ material/0 = ExtResource( 7 )
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall3"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall3/StaticBody"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Wall4" type="MeshInstance" parent="ArenaGeometry"]
 transform = Transform( -4.37114e-08, 40, -2.62268e-07, 0, -1.74846e-06, -6, -1, -1.74846e-06, 1.14641e-14, 0, 3.5, -19.5 )
@@ -119,7 +208,17 @@ material/0 = ExtResource( 7 )
 [node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall4"]
 
 [node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall4/StaticBody"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
+
+[node name="StaticBody2" type="StaticBody" parent="ArenaGeometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8773, 1.80588, -8.16947 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/StaticBody2"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="ArenaGeometry/StaticBody2"]
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
 
 [node name="Lighting" type="Spatial" parent="."]
 
@@ -136,6 +235,8 @@ shadow_color = Color( 0.6, 0.6, 0.6, 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 head_path = NodePath("../Player/Head")
 cam_path = NodePath("../Player/Head/Camera")
+acceleration = 4
+deacceleration = 4
 
 [node name="Ladder" parent="." instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-08, 0, 7, 0, 1.51, 0, -1, 0, -3.0598e-07, 13.25, 2, -5.25 )
