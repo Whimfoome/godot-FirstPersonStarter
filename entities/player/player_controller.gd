@@ -18,6 +18,7 @@ var can_sprint := true
 var sprinting := false
 # Walk
 const FLOOR_NORMAL := Vector3(0, 1, 0)
+const FLOOR_MAX_ANGLE: float = deg2rad(46.0)
 export(float) var gravity = 30.0
 export(int) var walk_speed = 10
 export(int) var sprint_speed = 16
@@ -29,8 +30,6 @@ export(int) var jump_height = 10
 export(int) var fly_speed = 10
 export(int) var fly_accel = 4
 var flying := false
-# Slopes
-export(float) var floor_max_angle = 45.0
 
 ##################################################
 
@@ -44,8 +43,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	move_axis.x = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
 	move_axis.y = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	
-	camera_rotation()
 
 
 # Called every physics tick. 'delta' is constant
@@ -60,6 +57,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_axis = event.relative
+		camera_rotation()
 
 
 func walk(delta: float) -> void:
@@ -124,8 +122,11 @@ func walk(delta: float) -> void:
 			velocity.z = 0
 	
 	# Move
-	velocity.y = move_and_slide_with_snap(velocity, _snap, FLOOR_NORMAL, 
-			true, 4, deg2rad(floor_max_angle)).y
+	var moving = move_and_slide_with_snap(velocity, _snap, FLOOR_NORMAL, true, 4, FLOOR_MAX_ANGLE)
+	if is_on_wall():
+		velocity = moving
+	else:
+		velocity.y = moving.y
 
 
 func fly(delta: float) -> void:
