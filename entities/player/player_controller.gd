@@ -14,7 +14,7 @@ onready var cam: Camera = get_node(cam_path)
 var velocity := Vector3()
 var direction := Vector3()
 var move_axis := Vector2()
-var can_sprint := true
+var sprint_enabled := true
 var sprinting := false
 # Walk
 const FLOOR_NORMAL := Vector3(0, 1, 0)
@@ -88,7 +88,7 @@ func walk(delta: float) -> void:
 	
 	# Sprint
 	var _speed: int
-	if (Input.is_action_pressed("move_sprint") and can_sprint and move_axis.x >= 0.5):
+	if (Input.is_action_pressed("move_sprint") and can_sprint() and move_axis.x >= 0.5):
 		_speed = sprint_speed
 		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
 		sprinting = true
@@ -167,3 +167,6 @@ func camera_rotation() -> void:
 		var temp_rot: Vector3 = head.rotation_degrees
 		temp_rot.x = clamp(temp_rot.x, -90, 90)
 		head.rotation_degrees = temp_rot
+
+func can_sprint() -> bool:
+	return (sprint_enabled and is_on_floor())
