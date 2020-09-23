@@ -116,9 +116,9 @@ func walk(delta: float) -> void:
 	# clamping (to stop on slopes)
 	if direction.dot(velocity) == 0:
 		var _vel_clamp := 0.25
-		if velocity.x < _vel_clamp and velocity.x > -_vel_clamp:
+		if abs(velocity.x) < _vel_clamp:
 			velocity.x = 0
-		if velocity.z < _vel_clamp and velocity.z > -_vel_clamp:
+		if abs(velocity.z) < _vel_clamp:
 			velocity.z = 0
 	
 	# Move

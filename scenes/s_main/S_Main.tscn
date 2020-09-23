@@ -134,8 +134,6 @@ shadow_color = Color( 0.6, 0.6, 0.6, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-head_path = NodePath("../Player/Head")
-cam_path = NodePath("../Player/Head/Camera")
 
 [node name="Ladder" parent="." instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-08, 0, 7, 0, 1.51, 0, -1, 0, -3.0598e-07, 13.25, 2, -5.25 )
