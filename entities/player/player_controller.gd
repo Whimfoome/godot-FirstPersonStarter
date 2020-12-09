@@ -17,7 +17,6 @@ var move_axis := Vector2()
 var sprint_enabled := true
 var sprinting := false
 # Walk
-const FLOOR_NORMAL := Vector3(0, 1, 0)
 const FLOOR_MAX_ANGLE: float = deg2rad(46.0)
 export(float) var gravity = 30.0
 export(int) var walk_speed = 10
@@ -78,9 +77,9 @@ func walk(delta: float) -> void:
 	# Jump
 	var _snap: Vector3
 	if is_on_floor():
-		_snap = Vector3(0, -1, 0)
+		_snap = Vector3.DOWN
 		if Input.is_action_just_pressed("move_jump"):
-			_snap = Vector3(0, 0, 0)
+			_snap = Vector3.ZERO
 			velocity.y = jump_height
 	
 	# Apply Gravity
@@ -122,7 +121,7 @@ func walk(delta: float) -> void:
 			velocity.z = 0
 	
 	# Move
-	var moving = move_and_slide_with_snap(velocity, _snap, FLOOR_NORMAL, true, 4, FLOOR_MAX_ANGLE)
+	var moving = move_and_slide_with_snap(velocity, _snap, Vector3.UP, true, 4, FLOOR_MAX_ANGLE)
 	if is_on_wall():
 		velocity = moving
 	else:
