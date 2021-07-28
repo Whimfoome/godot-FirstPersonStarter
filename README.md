@@ -1,4 +1,4 @@
-# First Person Starter ![Godot 3.2](https://img.shields.io/badge/godot-v3.2-%23478cbf)
+# First Person Starter ![Godot 3.4](https://img.shields.io/badge/godot-v3.4-%23478cbf)
 ![Screenshot of FirstPersonStarter Template](https://i.imgur.com/EzNSoQZ.png)
 
 FPS template for Godot to give starter content for a new or already existing project!
@@ -20,8 +20,6 @@ FPS template for Godot to give starter content for a new or already existing pro
 #### Project Controls:
 - Move with `W` `A` `S` `D` or `↑` `←` `↓` `→`
 - Jump with `Space`. Sprint with `Shift`
-- Unlock/Lock Mouse with `Shift + F1`
-- Close Game with `Esc`
 - *If you haven't imported the whole project, you should add them manually!*
 
 #### Credits:

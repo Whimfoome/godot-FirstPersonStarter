@@ -3,9 +3,9 @@ extends KinematicBody
 ###################-VARIABLES-####################
 
 # Camera
-export(float) var mouse_sensitivity = 12.0
-export(NodePath) var head_path
-export(NodePath) var cam_path
+export(float) var mouse_sensitivity = 8.0
+export(NodePath) var head_path = "Head"
+export(NodePath) var cam_path = "Head/Camera"
 export(float) var FOV = 80.0
 var mouse_axis := Vector2()
 onready var head: Spatial = get_node(head_path)
@@ -25,10 +25,6 @@ export(int) var acceleration = 8
 export(int) var deacceleration = 10
 export(float, 0.0, 1.0, 0.05) var air_control = 0.3
 export(int) var jump_height = 10
-# Fly
-export(int) var fly_speed = 10
-export(int) var fly_accel = 4
-var flying := false
 
 ##################################################
 
@@ -46,10 +42,7 @@ func _process(_delta: float) -> void:
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
-	if flying:
-		fly(delta)
-	else:
-		walk(delta)
+	walk(delta)
 
 
 # Called when there is an input event
@@ -112,42 +105,9 @@ func walk(delta: float) -> void:
 	_temp_vel = _temp_vel.linear_interpolate(_target, _temp_accel * delta)
 	velocity.x = _temp_vel.x
 	velocity.z = _temp_vel.z
-	# clamping (to stop on slopes)
-	if direction.dot(velocity) == 0:
-		var _vel_clamp := 0.25
-		if abs(velocity.x) < _vel_clamp:
-			velocity.x = 0
-		if abs(velocity.z) < _vel_clamp:
-			velocity.z = 0
 	
 	# Move
-	var moving = move_and_slide_with_snap(velocity, _snap, Vector3.UP, true, 4, FLOOR_MAX_ANGLE)
-	if is_on_wall():
-		velocity = moving
-	else:
-		velocity.y = moving.y
-
-
-func fly(delta: float) -> void:
-	# Input
-	direction = Vector3()
-	var aim = head.get_global_transform().basis
-	if move_axis.x >= 0.5:
-		direction -= aim.z
-	if move_axis.x <= -0.5:
-		direction += aim.z
-	if move_axis.y <= -0.5:
-		direction -= aim.x
-	if move_axis.y >= 0.5:
-		direction += aim.x
-	direction = direction.normalized()
-	
-	# Acceleration and Deacceleration
-	var target: Vector3 = direction * fly_speed
-	velocity = velocity.linear_interpolate(target, fly_accel * delta)
-	
-	# Move
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide_with_snap(velocity, _snap, Vector3.UP, true, 4, FLOOR_MAX_ANGLE)
 
 
 func camera_rotation() -> void:
