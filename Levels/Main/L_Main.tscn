@@ -26,7 +26,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 3, 
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 3, 0 )
 
 [node name="Wall5" parent="ArenaGeometry" instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-08, 1, 0, -0.173648, -7.5904e-09, -0.984808, -0.984808, -4.30473e-08, 0.173648, -15.4551, 0.945312, -21.6382 )
+transform = Transform( -4.37114e-08, 1, 0, -0.420624, -1.83861e-08, -0.907235, -0.907235, -3.96565e-08, 0.420624, -15.4551, 0.945312, -11.3081 )
 
 [node name="Wall6" parent="ArenaGeometry" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 1, 0, 0.744043, 3.25232e-08, -0.668131, -0.668131, -2.92049e-08, -0.744043, -15.4551, -10.2736, 11.0259 )

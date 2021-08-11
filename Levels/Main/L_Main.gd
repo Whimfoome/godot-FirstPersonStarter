@@ -7,7 +7,6 @@ extends Spatial
 
 export var fast_close := true
 
-##################################################
 
 func _ready() -> void:
 	if !OS.is_debug_build():

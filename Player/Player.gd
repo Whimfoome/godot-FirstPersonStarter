@@ -27,6 +27,8 @@ export(int) var deacceleration = 10
 export(float, 0.0, 1.0, 0.05) var air_control = 0.3
 export(int) var jump_height = 10
 var _speed: int
+var _is_sprinting_input := false
+var _is_jumping_input := false
 
 ##################################################
 
@@ -40,6 +42,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	move_axis.x = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
 	move_axis.y = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	
+	if Input.is_action_just_pressed("move_jump"):
+		_is_jumping_input = true
+	
+	if Input.is_action_pressed("move_sprint"):
+		_is_sprinting_input = true
 
 
 # Called every physics tick. 'delta' is constant
@@ -57,16 +65,17 @@ func _input(event: InputEvent) -> void:
 func walk(delta: float) -> void:
 	direction_input()
 	
-	# Jump
 	if is_on_floor():
 		snap = -get_floor_normal() - get_floor_velocity() * delta
+		jump()
 		
-		if Input.is_action_just_pressed("move_jump"):
-			snap = Vector3.ZERO
-			velocity.y = jump_height
-	
-	# Apply Gravity
-	if !is_on_floor():
+	else:
+		# Workaround for 'vertical bump' when going off platform
+		if snap != Vector3.ZERO && velocity.y != 0:
+			velocity.y = 0
+		
+		snap = Vector3.ZERO
+		
 		velocity.y -= gravity * delta
 	
 	sprint(delta)
@@ -74,6 +83,8 @@ func walk(delta: float) -> void:
 	accelerate(delta)
 	
 	velocity = move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, FLOOR_MAX_ANGLE)
+	_is_jumping_input = false
+	_is_sprinting_input = false
 
 
 func camera_rotation() -> void:
@@ -118,8 +129,10 @@ func accelerate(delta: float) -> void:
 	_temp_vel.y = 0
 	if direction.dot(_temp_vel) > 0:
 		_temp_accel = acceleration
+		
 	else:
 		_temp_accel = deacceleration
+	
 	if not is_on_floor():
 		_temp_accel *= air_control
 	
@@ -128,13 +141,28 @@ func accelerate(delta: float) -> void:
 	
 	velocity.x = _temp_vel.x
 	velocity.z = _temp_vel.z
+	
+	# Make too low values zero
+	if direction.dot(velocity) == 0:
+		var _vel_clamp := 0.01
+		if abs(velocity.x) < _vel_clamp:
+			velocity.x = 0
+		if abs(velocity.z) < _vel_clamp:
+			velocity.z = 0
+
+
+func jump() -> void:
+	if _is_jumping_input:
+		velocity.y = jump_height
+		snap = Vector3.ZERO
 
 
 func sprint(delta: float) -> void:
-	if (Input.is_action_pressed("move_sprint") and can_sprint() and move_axis.x >= 0.5):
+	if can_sprint():
 		_speed = sprint_speed
 		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
 		sprinting = true
+		
 	else:
 		_speed = walk_speed
 		cam.set_fov(lerp(cam.fov, FOV, delta * 8))
@@ -142,4 +170,4 @@ func sprint(delta: float) -> void:
 
 
 func can_sprint() -> bool:
-	return (sprint_enabled and is_on_floor())
+	return (sprint_enabled and is_on_floor() and _is_sprinting_input and move_axis.x >= 0.5)
