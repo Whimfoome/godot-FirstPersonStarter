@@ -14,6 +14,7 @@ onready var cam: Camera = get_node(cam_path)
 var velocity := Vector3()
 var direction := Vector3()
 var move_axis := Vector2()
+var snap := Vector3()
 var sprint_enabled := true
 var sprinting := false
 # Walk
@@ -25,6 +26,7 @@ export(int) var acceleration = 8
 export(int) var deacceleration = 10
 export(float, 0.0, 1.0, 0.05) var air_control = 0.3
 export(int) var jump_height = 10
+var _speed: int
 
 ##################################################
 
@@ -53,61 +55,25 @@ func _input(event: InputEvent) -> void:
 
 
 func walk(delta: float) -> void:
-	# Input
-	direction = Vector3()
-	var aim: Basis = get_global_transform().basis
-	if move_axis.x >= 0.5:
-		direction -= aim.z
-	if move_axis.x <= -0.5:
-		direction += aim.z
-	if move_axis.y <= -0.5:
-		direction -= aim.x
-	if move_axis.y >= 0.5:
-		direction += aim.x
-	direction.y = 0
-	direction = direction.normalized()
+	direction_input()
 	
 	# Jump
-	var _snap: Vector3
 	if is_on_floor():
-		_snap = Vector3.DOWN
+		snap = -get_floor_normal() - get_floor_velocity() * delta
+		
 		if Input.is_action_just_pressed("move_jump"):
-			_snap = Vector3.ZERO
+			snap = Vector3.ZERO
 			velocity.y = jump_height
 	
 	# Apply Gravity
-	velocity.y -= gravity * delta
+	if !is_on_floor():
+		velocity.y -= gravity * delta
 	
-	# Sprint
-	var _speed: int
-	if (Input.is_action_pressed("move_sprint") and can_sprint() and move_axis.x >= 0.5):
-		_speed = sprint_speed
-		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
-		sprinting = true
-	else:
-		_speed = walk_speed
-		cam.set_fov(lerp(cam.fov, FOV, delta * 8))
-		sprinting = false
+	sprint(delta)
 	
-	# Acceleration and Deacceleration
-	# where would the player go
-	var _temp_vel: Vector3 = velocity
-	_temp_vel.y = 0
-	var _target: Vector3 = direction * _speed
-	var _temp_accel: float
-	if direction.dot(_temp_vel) > 0:
-		_temp_accel = acceleration
-	else:
-		_temp_accel = deacceleration
-	if not is_on_floor():
-		_temp_accel *= air_control
-	# interpolation
-	_temp_vel = _temp_vel.linear_interpolate(_target, _temp_accel * delta)
-	velocity.x = _temp_vel.x
-	velocity.z = _temp_vel.z
+	accelerate(delta)
 	
-	# Move
-	velocity = move_and_slide_with_snap(velocity, _snap, Vector3.UP, true, 4, FLOOR_MAX_ANGLE)
+	velocity = move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, FLOOR_MAX_ANGLE)
 
 
 func camera_rotation() -> void:
@@ -126,6 +92,54 @@ func camera_rotation() -> void:
 		var temp_rot: Vector3 = head.rotation_degrees
 		temp_rot.x = clamp(temp_rot.x, -90, 90)
 		head.rotation_degrees = temp_rot
+
+
+func direction_input() -> void:
+	direction = Vector3()
+	var aim: Basis = get_global_transform().basis
+	if move_axis.x >= 0.5:
+		direction -= aim.z
+	if move_axis.x <= -0.5:
+		direction += aim.z
+	if move_axis.y <= -0.5:
+		direction -= aim.x
+	if move_axis.y >= 0.5:
+		direction += aim.x
+	direction.y = 0
+	direction = direction.normalized()
+
+
+func accelerate(delta: float) -> void:
+	# Where would the player go
+	var _temp_vel: Vector3 = velocity
+	var _temp_accel: float
+	var _target: Vector3 = direction * _speed
+	
+	_temp_vel.y = 0
+	if direction.dot(_temp_vel) > 0:
+		_temp_accel = acceleration
+	else:
+		_temp_accel = deacceleration
+	if not is_on_floor():
+		_temp_accel *= air_control
+	
+	# Interpolation
+	_temp_vel = _temp_vel.linear_interpolate(_target, _temp_accel * delta)
+	
+	velocity.x = _temp_vel.x
+	velocity.z = _temp_vel.z
+
+
+func sprint(delta: float) -> void:
+	if (Input.is_action_pressed("move_sprint") and can_sprint() and move_axis.x >= 0.5):
+		_speed = sprint_speed
+		cam.set_fov(lerp(cam.fov, FOV * 1.05, delta * 8))
+		sprinting = true
+	else:
+		_speed = walk_speed
+		cam.set_fov(lerp(cam.fov, FOV, delta * 8))
+		sprinting = false
+
 
 func can_sprint() -> bool:
 	return (sprint_enabled and is_on_floor())

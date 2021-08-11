@@ -4,7 +4,6 @@
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
-height = 0.8
 
 [node name="Player" type="KinematicBody"]
 collision_layer = 2

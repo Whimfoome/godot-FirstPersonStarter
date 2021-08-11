@@ -1,92 +1,35 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Levels/Main/Materials/M_Dark.tres" type="Material" id=2]
+[ext_resource path="res://Levels/Main/Geometry/Floor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/Main/Environment.tres" type="Environment" id=3]
-[ext_resource path="res://Levels/Main/Materials/M_Blue.tres" type="Material" id=4]
-
-[sub_resource type="CubeMesh" id=1]
-material = ExtResource( 2 )
-size = Vector3( 40, 0.5, 40 )
-
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 20, 0.25, 20 )
-
-[sub_resource type="CubeMesh" id=2]
-material = ExtResource( 4 )
-size = Vector3( 40, 6, 1 )
-
-[sub_resource type="BoxShape" id=4]
-extents = Vector3( 20, 3, 0.5 )
-
-[sub_resource type="CubeMesh" id=5]
-size = Vector3( 5, 5, 5 )
-
-[sub_resource type="BoxShape" id=6]
-extents = Vector3( 2.5, 2.5, 2.5 )
+[ext_resource path="res://Levels/Main/L_Main.gd" type="Script" id=4]
+[ext_resource path="res://Levels/Main/Geometry/Wall.tscn" type="PackedScene" id=5]
 
 [node name="L_Main" type="Spatial"]
+script = ExtResource( 4 )
 
 [node name="ArenaGeometry" type="Spatial" parent="."]
 
-[node name="Floor1" type="MeshInstance" parent="ArenaGeometry"]
-mesh = SubResource( 1 )
-material/0 = null
+[node name="Floor1" parent="ArenaGeometry" instance=ExtResource( 2 )]
 
-[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Floor1"]
-
-[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Floor1/StaticBody"]
-shape = SubResource( 3 )
-
-[node name="Wall1" type="MeshInstance" parent="ArenaGeometry"]
+[node name="Wall1" parent="ArenaGeometry" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -20 )
-mesh = SubResource( 2 )
-material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall1"]
-
-[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall1/StaticBody"]
-shape = SubResource( 4 )
-
-[node name="Wall2" type="MeshInstance" parent="ArenaGeometry"]
+[node name="Wall2" parent="ArenaGeometry" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 20 )
-mesh = SubResource( 2 )
-material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall2"]
-
-[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall2/StaticBody"]
-shape = SubResource( 4 )
-
-[node name="Wall3" type="MeshInstance" parent="ArenaGeometry"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 3, 0 )
-mesh = SubResource( 2 )
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall3"]
-
-[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall3/StaticBody"]
-shape = SubResource( 4 )
-
-[node name="Wall4" type="MeshInstance" parent="ArenaGeometry"]
+[node name="Wall3" parent="ArenaGeometry" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 3, 0 )
-mesh = SubResource( 2 )
-material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/Wall4"]
+[node name="Wall4" parent="ArenaGeometry" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 3, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/Wall4/StaticBody"]
-shape = SubResource( 4 )
+[node name="Wall5" parent="ArenaGeometry" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 1, 0, -0.173648, -7.5904e-09, -0.984808, -0.984808, -4.30473e-08, 0.173648, -15.4551, 0.945312, -21.6382 )
 
-[node name="MeshInstance" type="MeshInstance" parent="ArenaGeometry"]
-transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, -0.924649, 11.9167 )
-mesh = SubResource( 5 )
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="ArenaGeometry/MeshInstance"]
-
-[node name="CollisionShape" type="CollisionShape" parent="ArenaGeometry/MeshInstance/StaticBody"]
-shape = SubResource( 6 )
+[node name="Wall6" parent="ArenaGeometry" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 1, 0, 0.744043, 3.25232e-08, -0.668131, -0.668131, -2.92049e-08, -0.744043, -15.4551, -10.2736, 11.0259 )
 
 [node name="Lighting" type="Node" parent="."]
 
