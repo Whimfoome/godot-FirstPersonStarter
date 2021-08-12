@@ -67,8 +67,12 @@ func walk(delta: float) -> void:
 	
 	if is_on_floor():
 		snap = -get_floor_normal() - get_floor_velocity() * delta
-		jump()
 		
+		# Workaround for sliding down after jump on slope
+		if velocity.y < 0:
+			velocity.y = 0
+		
+		jump()
 	else:
 		# Workaround for 'vertical bump' when going off platform
 		if snap != Vector3.ZERO && velocity.y != 0:
