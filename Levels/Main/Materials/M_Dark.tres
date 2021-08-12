@@ -1,4 +1,11 @@
-[gd_resource type="SpatialMaterial" format=2]
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Levels/Main/Materials/T_Grid.png" type="Texture" id=1]
 
 [resource]
-albedo_color = Color( 0.0901961, 0.129412, 0.180392, 1 )
+params_diffuse_mode = 1
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0
+uv1_scale = Vector3( 0.5, 0.5, 0.5 )
+uv1_offset = Vector3( 0.5, 0.5, 0.5 )
+uv1_triplanar = true

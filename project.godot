@@ -1129,6 +1129,7 @@ mouse_input={
 
 [rendering]
 
+quality/filters/anisotropic_filter_level=8
 quality/filters/msaa=1
 quality/filters/use_fxaa=true
 environment/default_environment="res://default_env.tres"
