@@ -5,12 +5,11 @@ FPS template for Godot to give starter content for a new or already existing pro
 
 #### Includes:
 - 3D Character Controller
+  - Smooth Movement (Acceleration and Deceleration)
   - Smooth Camera Rotation
-  - Smooth Walking (Acceleration and Deacceleration)
+  - Handles Slopes like a charm in a clean way
+  - Optional Sprinting
   - Air Control
-  - Sprinting
-  - Flying
-  - Slope Support
   - Easily Adjustable from the Inspector
 - Example 3D Scene
 

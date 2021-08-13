@@ -60,6 +60,10 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_axis = event.relative
 		camera_rotation()
+	
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT && event.pressed:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func walk(delta: float) -> void:
