@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://lqyku5wn2wo0"]
+
+[ext_resource type="Script" path="res://Player/MovementController.gd" id="1_ktghv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fn1rj"]
+
+[node name="MovementController" type="CharacterBody3D"]
+script = ExtResource( "1_ktghv" )
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource( "CapsuleShape3D_fn1rj" )

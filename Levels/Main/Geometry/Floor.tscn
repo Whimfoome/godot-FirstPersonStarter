@@ -1,19 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://ctkc7yqdqdtao"]
 
-[ext_resource path="res://Levels/Main/Materials/M_Dark.tres" type="Material" id=1]
+[ext_resource type="Material" uid="uid://sofvlrq3jmka" path="res://Levels/Main/Materials/M_Dark.tres" id="1_ip66u"]
 
-[sub_resource type="CubeMesh" id=1]
-material = ExtResource( 1 )
-size = Vector3( 40, 0.5, 40 )
+[sub_resource type="BoxMesh" id="BoxMesh_srxwf"]
+size = Vector3(40, 0.5, 40)
 
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 20, 0.25, 20 )
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wmcjf"]
+data = PackedVector3Array(-20, 0.25, 20, 20, 0.25, 20, -20, -0.25, 20, 20, 0.25, 20, 20, -0.25, 20, -20, -0.25, 20, 20, 0.25, -20, -20, 0.25, -20, 20, -0.25, -20, -20, 0.25, -20, -20, -0.25, -20, 20, -0.25, -20, 20, 0.25, 20, 20, 0.25, -20, 20, -0.25, 20, 20, 0.25, -20, 20, -0.25, -20, 20, -0.25, 20, -20, 0.25, -20, -20, 0.25, 20, -20, -0.25, -20, -20, 0.25, 20, -20, -0.25, 20, -20, -0.25, -20, 20, 0.25, 20, -20, 0.25, 20, 20, 0.25, -20, -20, 0.25, 20, -20, 0.25, -20, 20, 0.25, -20, -20, -0.25, 20, 20, -0.25, 20, -20, -0.25, -20, 20, -0.25, 20, 20, -0.25, -20, -20, -0.25, -20)
 
-[node name="Floor" type="MeshInstance"]
-mesh = SubResource( 1 )
-material/0 = null
+[node name="Floor" type="MeshInstance3D"]
+mesh = SubResource( "BoxMesh_srxwf" )
+surface_material_override/0 = ExtResource( "1_ip66u" )
 
-[node name="StaticBody" type="StaticBody" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 3 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource( "ConcavePolygonShape3D_wmcjf" )
