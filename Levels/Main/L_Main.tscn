@@ -202,7 +202,7 @@ surface_material_override/0 = ExtResource( "4_m7xar" )
 shape = SubResource( "ConcavePolygonShape3D_mr3ar" )
 
 [node name="TooSteep1" type="MeshInstance3D" parent="ArenaGeometry"]
-transform = Transform3D(-0.5, -0.866025, 8.74228e-08, -0.866025, 0.5, 0, -4.37114e-08, -7.57103e-08, -1, 16.5, 5.5, 8.5)
+transform = Transform3D(-0.5, -0.866025, 8.74228e-08, -0.866025, 0.5, 0, -4.37114e-08, -7.57103e-08, -1, 16.5, 5.5, 8)
 mesh = SubResource( "BoxMesh_006tu" )
 surface_material_override/0 = ExtResource( "4_m7xar" )
 
@@ -212,7 +212,7 @@ surface_material_override/0 = ExtResource( "4_m7xar" )
 shape = SubResource( "ConcavePolygonShape3D_do582" )
 
 [node name="TooSteep2" type="MeshInstance3D" parent="ArenaGeometry"]
-transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -16.5, 5.5, 8.5)
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -16.5, 5.5, 8)
 mesh = SubResource( "BoxMesh_006tu" )
 surface_material_override/0 = ExtResource( "4_m7xar" )
 

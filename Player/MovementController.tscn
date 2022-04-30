@@ -5,6 +5,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fn1rj"]
 
 [node name="MovementController" type="CharacterBody3D"]
+floor_block_on_wall = false
+floor_snap_length = 0.5
 script = ExtResource( "1_ktghv" )
 
 [node name="Collision" type="CollisionShape3D" parent="."]

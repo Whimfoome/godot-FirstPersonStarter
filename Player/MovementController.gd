@@ -11,12 +11,12 @@ class_name MovementController
 var direction := Vector3()
 var input_axis := Vector2()
 # Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
-@onready var gravity = (ProjectSettings.get_setting("physics/3d/default_gravity") 
+@onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") 
 		* gravity_multiplier)
 
 
 # Called every physics tick. 'delta' is constant
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	input_axis = Input.get_vector("move_back", "move_forward",
 			"move_left", "move_right")
 	
