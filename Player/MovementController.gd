@@ -55,16 +55,7 @@ func _physics_process(delta) -> void:
 func direction_input() -> void:
 	direction = Vector3()
 	var aim: Basis = get_global_transform().basis
-	if input_axis.x >= 0.5:
-		direction -= aim.z
-	if input_axis.x <= -0.5:
-		direction += aim.z
-	if input_axis.y <= -0.5:
-		direction -= aim.x
-	if input_axis.y >= 0.5:
-		direction += aim.x
-	direction.y = 0
-	direction = direction.normalized()
+	direction = aim.z * -input_axis.x + aim.x * input_axis.y
 
 
 func accelerate(delta: float) -> void:
