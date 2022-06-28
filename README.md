@@ -9,6 +9,7 @@ FPS template for Godot to give starter content for a new or already existing pro
   - Smooth Camera Rotation
   - Handles Slopes
   - Optional Sprinting
+  - Optional Air Jumps (double-jump, triple-jump etc)
   - Air Control
   - Highly Modular
   - Easily Adjustable from the Inspector
