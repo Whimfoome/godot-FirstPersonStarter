@@ -13,7 +13,7 @@ var rot := Vector3()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mouse_sensitivity = mouse_sensitivity / 1000
-	y_limit = deg2rad(y_limit)
+	y_limit = deg_to_rad(y_limit)
 
 
 # Called when there is an input event

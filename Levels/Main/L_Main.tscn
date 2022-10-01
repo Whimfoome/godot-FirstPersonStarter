@@ -59,172 +59,172 @@ sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
 [sub_resource type="Sky" id="Sky_t5ash"]
-sky_material = SubResource( "ProceduralSkyMaterial_ggqlx" )
+sky_material = SubResource("ProceduralSkyMaterial_ggqlx")
 
 [sub_resource type="Environment" id="Environment_7ofk6"]
 background_mode = 2
-sky = SubResource( "Sky_t5ash" )
+sky = SubResource("Sky_t5ash")
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.95
 tonemap_mode = 2
 glow_enabled = true
 
 [node name="L_Main" type="Node3D"]
-script = ExtResource( "1_km1jj" )
+script = ExtResource("1_km1jj")
 
-[node name="Player" parent="." instance=ExtResource( "1_qgept" )]
+[node name="Player" parent="." instance=ExtResource("1_qgept")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="ArenaGeometry" type="Node3D" parent="."]
 
-[node name="Floor" parent="ArenaGeometry" instance=ExtResource( "1_yb0tt" )]
+[node name="Floor" parent="ArenaGeometry" instance=ExtResource("1_yb0tt")]
 
-[node name="Wall" parent="ArenaGeometry" instance=ExtResource( "3_jw8hm" )]
+[node name="Wall" parent="ArenaGeometry" instance=ExtResource("3_jw8hm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.75, -20)
 
-[node name="Wall2" parent="ArenaGeometry" instance=ExtResource( "3_jw8hm" )]
+[node name="Wall2" parent="ArenaGeometry" instance=ExtResource("3_jw8hm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.75, 20)
 
-[node name="Wall3" parent="ArenaGeometry" instance=ExtResource( "3_jw8hm" )]
+[node name="Wall3" parent="ArenaGeometry" instance=ExtResource("3_jw8hm")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 20, 5.75, 0)
 
-[node name="Wall4" parent="ArenaGeometry" instance=ExtResource( "3_jw8hm" )]
+[node name="Wall4" parent="ArenaGeometry" instance=ExtResource("3_jw8hm")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -20, 5.75, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -17.5)
-mesh = SubResource( "BoxMesh_egctf" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_egctf")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/Cube"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/Cube/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_4rksp" )
+shape = SubResource("ConcavePolygonShape3D_4rksp")
 
 [node name="Slope1" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(1, 0, 0, 0, 0.766044, -0.642788, 0, 0.642788, 0.766044, 0, 0.315, -13.92)
-mesh = SubResource( "BoxMesh_23v81" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_23v81")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/Slope1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/Slope1/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_mwbuo" )
+shape = SubResource("ConcavePolygonShape3D_mwbuo")
 
 [node name="Platform1" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.25, 5.75, -17.5)
-mesh = SubResource( "BoxMesh_hf657" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_hf657")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/Platform1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/Platform1/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_makhu" )
+shape = SubResource("ConcavePolygonShape3D_makhu")
 
 [node name="Platform2" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.25, 5.75, -17.5)
-mesh = SubResource( "BoxMesh_hf657" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_hf657")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/Platform2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/Platform2/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_makhu" )
+shape = SubResource("ConcavePolygonShape3D_makhu")
 
 [node name="Platform3" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -17.5, 5.75, -1.75)
-mesh = SubResource( "BoxMesh_ook3l" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_ook3l")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/Platform3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/Platform3/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_gl53m" )
+shape = SubResource("ConcavePolygonShape3D_gl53m")
 
 [node name="Platform4" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 17.5, 5.75, -1.75)
-mesh = SubResource( "BoxMesh_ook3l" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_ook3l")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/Platform4"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/Platform4/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_gl53m" )
+shape = SubResource("ConcavePolygonShape3D_gl53m")
 
 [node name="Bridge" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 13.5)
-mesh = SubResource( "BoxMesh_qmaip" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_qmaip")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/Bridge"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/Bridge/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_okliu" )
+shape = SubResource("ConcavePolygonShape3D_okliu")
 
 [node name="BridgePlat1" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3.5, 17.5)
-mesh = SubResource( "BoxMesh_wgm2j" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_wgm2j")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/BridgePlat1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/BridgePlat1/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_ioobg" )
+shape = SubResource("ConcavePolygonShape3D_ioobg")
 
 [node name="BridgePlat2" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 3.5, 17.5)
-mesh = SubResource( "BoxMesh_wgm2j" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_wgm2j")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/BridgePlat2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/BridgePlat2/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_ioobg" )
+shape = SubResource("ConcavePolygonShape3D_ioobg")
 
 [node name="BridgeSlope1" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(-0.866026, -0.5, 8.74228e-08, -0.5, 0.866025, -1.77636e-15, -7.57104e-08, -4.37114e-08, -1, 12.87, 1.66, 17.5)
-mesh = SubResource( "BoxMesh_1xrj7" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_1xrj7")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/BridgeSlope1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/BridgeSlope1/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_mr3ar" )
+shape = SubResource("ConcavePolygonShape3D_mr3ar")
 
 [node name="BridgeSlope2" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(0.866026, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -12.87, 1.66, 17.5)
-mesh = SubResource( "BoxMesh_1xrj7" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_1xrj7")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/BridgeSlope2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/BridgeSlope2/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_mr3ar" )
+shape = SubResource("ConcavePolygonShape3D_mr3ar")
 
 [node name="TooSteep1" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(-0.5, -0.866025, 8.74228e-08, -0.866025, 0.5, 0, -4.37114e-08, -7.57103e-08, -1, 16.5, 5.5, 8)
-mesh = SubResource( "BoxMesh_006tu" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_006tu")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/TooSteep1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/TooSteep1/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_do582" )
+shape = SubResource("ConcavePolygonShape3D_do582")
 
 [node name="TooSteep2" type="MeshInstance3D" parent="ArenaGeometry"]
 transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -16.5, 5.5, 8)
-mesh = SubResource( "BoxMesh_006tu" )
-surface_material_override/0 = ExtResource( "4_m7xar" )
+mesh = SubResource("BoxMesh_006tu")
+surface_material_override/0 = ExtResource("4_m7xar")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ArenaGeometry/TooSteep2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArenaGeometry/TooSteep2/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_do582" )
+shape = SubResource("ConcavePolygonShape3D_do582")
 
 [node name="Lighting" type="Node" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
-environment = SubResource( "Environment_7ofk6" )
+environment = SubResource("Environment_7ofk6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 5, 0)
