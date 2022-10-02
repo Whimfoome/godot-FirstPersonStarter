@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name MovementController
 
 signal landed
+signal jumped
 
 @export var gravity_multiplier := 3.0
 @export var speed := 10
@@ -25,7 +26,6 @@ func _physics_process(delta: float) -> void:
 	direction_input()
 	
 	if is_on_floor() and !_last_is_on_floor:
-		print("landed")
 		emit_signal("landed")
 		
 	_last_is_on_floor = is_on_floor()
@@ -33,6 +33,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = jump_height
+			emit_signal("jumped")
 	else:
 		velocity.y -= gravity * delta
 	
