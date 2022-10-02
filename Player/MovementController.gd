@@ -1,6 +1,7 @@
 extends CharacterBody3D
 class_name MovementController
 
+signal landed
 
 @export var gravity_multiplier := 3.0
 @export var speed := 10
@@ -14,6 +15,7 @@ var input_axis := Vector2()
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") 
 		* gravity_multiplier)
 
+var _last_is_on_floor := false
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
@@ -21,6 +23,12 @@ func _physics_process(delta: float) -> void:
 			"move_left", "move_right")
 	
 	direction_input()
+	
+	if is_on_floor() and !_last_is_on_floor:
+		print("landed")
+		emit_signal("landed")
+		
+	_last_is_on_floor = is_on_floor()
 	
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
