@@ -4,7 +4,7 @@
 
 [node name="Head" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
-script = ExtResource( "1_enjfg" )
+script = ExtResource("1_enjfg")
 
 [node name="Camera" type="Camera3D" parent="."]
 current = true

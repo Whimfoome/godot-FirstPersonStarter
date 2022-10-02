@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b8drbos167vf8" path="res://Player/Head.tscn" id="2_41iu1"]
 [ext_resource type="Script" path="res://Player/Sprint.gd" id="3_bgqcu"]
 
-[node name="Player" instance=ExtResource( "1_t1jcr" )]
+[node name="Player" instance=ExtResource("1_t1jcr")]
 
-[node name="Head" parent="." index="1" instance=ExtResource( "2_41iu1" )]
+[node name="Head" parent="." index="1" instance=ExtResource("2_41iu1")]
 
 [node name="Sprint" type="Node" parent="." index="2"]
-script = ExtResource( "3_bgqcu" )
+script = ExtResource("3_bgqcu")

@@ -9,10 +9,10 @@ size = Vector3(40, 0.5, 40)
 data = PackedVector3Array(-20, 0.25, 20, 20, 0.25, 20, -20, -0.25, 20, 20, 0.25, 20, 20, -0.25, 20, -20, -0.25, 20, 20, 0.25, -20, -20, 0.25, -20, 20, -0.25, -20, -20, 0.25, -20, -20, -0.25, -20, 20, -0.25, -20, 20, 0.25, 20, 20, 0.25, -20, 20, -0.25, 20, 20, 0.25, -20, 20, -0.25, -20, 20, -0.25, 20, -20, 0.25, -20, -20, 0.25, 20, -20, -0.25, -20, -20, 0.25, 20, -20, -0.25, 20, -20, -0.25, -20, 20, 0.25, 20, -20, 0.25, 20, 20, 0.25, -20, -20, 0.25, 20, -20, 0.25, -20, 20, 0.25, -20, -20, -0.25, 20, 20, -0.25, 20, -20, -0.25, -20, 20, -0.25, 20, 20, -0.25, -20, -20, -0.25, -20)
 
 [node name="Floor" type="MeshInstance3D"]
-mesh = SubResource( "BoxMesh_srxwf" )
-surface_material_override/0 = ExtResource( "1_ip66u" )
+mesh = SubResource("BoxMesh_srxwf")
+surface_material_override/0 = ExtResource("1_ip66u")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_wmcjf" )
+shape = SubResource("ConcavePolygonShape3D_wmcjf")

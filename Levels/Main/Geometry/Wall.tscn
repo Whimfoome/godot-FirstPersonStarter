@@ -9,10 +9,10 @@ size = Vector3(40, 12, 1)
 data = PackedVector3Array(-20, 6, 0.5, 20, 6, 0.5, -20, -6, 0.5, 20, 6, 0.5, 20, -6, 0.5, -20, -6, 0.5, 20, 6, -0.5, -20, 6, -0.5, 20, -6, -0.5, -20, 6, -0.5, -20, -6, -0.5, 20, -6, -0.5, 20, 6, 0.5, 20, 6, -0.5, 20, -6, 0.5, 20, 6, -0.5, 20, -6, -0.5, 20, -6, 0.5, -20, 6, -0.5, -20, 6, 0.5, -20, -6, -0.5, -20, 6, 0.5, -20, -6, 0.5, -20, -6, -0.5, 20, 6, 0.5, -20, 6, 0.5, 20, 6, -0.5, -20, 6, 0.5, -20, 6, -0.5, 20, 6, -0.5, -20, -6, 0.5, 20, -6, 0.5, -20, -6, -0.5, 20, -6, 0.5, 20, -6, -0.5, -20, -6, -0.5)
 
 [node name="Wall" type="MeshInstance3D"]
-mesh = SubResource( "BoxMesh_7y6gq" )
-surface_material_override/0 = ExtResource( "1_h7iyj" )
+mesh = SubResource("BoxMesh_7y6gq")
+surface_material_override/0 = ExtResource("1_h7iyj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_y0tdx" )
+shape = SubResource("ConcavePolygonShape3D_y0tdx")
