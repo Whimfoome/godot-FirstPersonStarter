@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c1f6duvpfuijb" path="res://Levels/Main/Materials/T_Grid.png" id="1_f7qp1"]
 
 [resource]
-albedo_texture = ExtResource( "1_f7qp1" )
+albedo_texture = ExtResource("1_f7qp1")
 metallic_specular = 0.0
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_offset = Vector3(0.5, 0.5, 0.5)
