@@ -1,4 +1,4 @@
-# First Person Starter ![Godot 3.5](https://img.shields.io/badge/godot-v3.5-%23478cbf)
+# First Person Starter ![Godot 4.0.rc1](https://img.shields.io/badge/godot-v4.0.rc1-%23478cbf)
 ![Screenshot of FirstPersonStarter Template](https://i.imgur.com/gFDpPlj.png)
 
 FPS template for Godot to give starter content for a new or already existing project!
@@ -12,6 +12,7 @@ FPS template for Godot to give starter content for a new or already existing pro
   - Air Control
   - Highly Modular
   - Easily Adjustable from the Inspector
+  - Joypad Controller Support (Thanks to [florianvazelle](https://github.com/florianvazelle))
 - Example 3D Scene
 
 #### Project Controls:

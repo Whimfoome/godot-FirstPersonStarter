@@ -1,12 +1,11 @@
-extends Spatial
+extends Node3D
 
 #-----------------SCENE--SCRIPT------------------#
 #    Close your game faster by clicking 'Esc'    #
 #   Change mouse mode by clicking 'Shift + F1'   #
 #------------------------------------------------#
 
-export var fast_close := true
-
+@export var fast_close := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,10 +22,10 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed(&"ui_cancel"):
 		get_tree().quit() # Quits the game
 	
-	if event.is_action_pressed("change_mouse_input"):
+	if event.is_action_pressed(&"change_mouse_input"):
 		match Input.get_mouse_mode():
 			Input.MOUSE_MODE_CAPTURED:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -38,5 +37,5 @@ func _input(event: InputEvent) -> void:
 # Called when an InputEvent hasn't been consumed by _input() or any GUI item
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-			if event.button_index == BUTTON_LEFT && event.pressed:
+			if event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
