@@ -26,3 +26,4 @@ FPS template for Godot to give starter content for a new or already existing pro
 - Grid Texture/s from [KenneyNL](https://www.kenney.nl/assets/prototype-textures)
 - To create this project I watched [Jeremy Bullock's Godot First Person Controller Series](https://www.youtube.com/watch?v=Etpq-d5af6M&list=PLTZoMpB5Z4aD-rCpluXsQjkGYgUGUZNIV)
 - Thanks to the awesome Godot community for being helpful to anyone with problems, for making amazing tutorials, for writing the documentation and being supportive.
+
