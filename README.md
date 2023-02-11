@@ -1,7 +1,8 @@
-# First Person Starter ![Godot 4.0.rc1](https://img.shields.io/badge/godot-v4.0.rc1-%23478cbf)
+# First Person Starter ![Godot 4.0](https://img.shields.io/badge/godot-v4.0-%23478cbf)
 ![Screenshot of FirstPersonStarter Template](https://i.imgur.com/gFDpPlj.png)
 
 FPS template for Godot to give starter content for a new or already existing project!
+> **Note**: Looking for Godot 3.x version? Checkout [`gd-3.x branch`](https://github.com/Whimfoome/godot-FirstPersonStarter/tree/gd-3.x).
 
 #### Includes:
 - 3D Character Controller
