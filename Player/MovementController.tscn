@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://lqyku5wn2wo0"]
 
-[ext_resource path="res://Player/MovementController.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://Player/MovementController.gd" id="1_ktghv"]
 
-[sub_resource type="CapsuleShape" id=1]
-radius = 0.5
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fn1rj"]
 
-[node name="MovementController" type="KinematicBody"]
+[node name="MovementController" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource( 1 )
+floor_block_on_wall = false
+floor_snap_length = 0.5
+script = ExtResource("1_ktghv")
 
-[node name="Collision" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 1 )
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fn1rj")

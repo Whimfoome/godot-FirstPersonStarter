@@ -1,7 +1,8 @@
-# First Person Starter ![Godot 3.5](https://img.shields.io/badge/godot-v3.5-%23478cbf)
+# First Person Starter ![Godot 4.0](https://img.shields.io/badge/godot-v4.0-%23478cbf)
 ![Screenshot of FirstPersonStarter Template](https://i.imgur.com/gFDpPlj.png)
 
 FPS template for Godot to give starter content for a new or already existing project!
+> **Note**: Looking for Godot 3.x version? Checkout [`gd-3.x branch`](https://github.com/Whimfoome/godot-FirstPersonStarter/tree/gd-3.x).
 
 #### Includes:
 - 3D Character Controller
@@ -12,6 +13,7 @@ FPS template for Godot to give starter content for a new or already existing pro
   - Air Control
   - Highly Modular
   - Easily Adjustable from the Inspector
+  - Joypad Controller Support (Thanks to [florianvazelle](https://github.com/florianvazelle))
 - Example 3D Scene
 
 #### Project Controls:
@@ -25,3 +27,4 @@ FPS template for Godot to give starter content for a new or already existing pro
 - Grid Texture/s from [KenneyNL](https://www.kenney.nl/assets/prototype-textures)
 - To create this project I watched [Jeremy Bullock's Godot First Person Controller Series](https://www.youtube.com/watch?v=Etpq-d5af6M&list=PLTZoMpB5Z4aD-rCpluXsQjkGYgUGUZNIV)
 - Thanks to the awesome Godot community for being helpful to anyone with problems, for making amazing tutorials, for writing the documentation and being supportive.
+
