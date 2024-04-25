@@ -55,7 +55,8 @@ func accelerate(delta: float) -> void:
 	if not is_on_floor():
 		temp_accel *= air_control
 	
-	temp_vel = temp_vel.lerp(target, temp_accel * delta)
+	var accel_weight = clamp(temp_accel * delta, 0.0, 1.0)
+	temp_vel = temp_vel.lerp(target, accel_weight)
 	
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
