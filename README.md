@@ -1,4 +1,4 @@
-# First Person Starter ![Godot 4.0](https://img.shields.io/badge/godot-v4.0-%23478cbf)
+# First Person Starter ![Godot 4.2](https://img.shields.io/badge/godot-v4.2-%23478cbf)
 ![Screenshot of FirstPersonStarter Template](https://i.imgur.com/gFDpPlj.png)
 
 FPS template for Godot to give starter content for a new or already existing project!
